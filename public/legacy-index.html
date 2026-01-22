@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Digital Dynamic Inc.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トップページ | AIインフラソリューション</title>
+<link rel="stylesheet" href="./asset/css/style.css">
+</head>
+<body>
+
+<canvas id="networkCanvas"></canvas>
+
+<header class="global-header">
+  <div class="container">
+    <a href="index.html" class="header-logo">
+      <img src="./asset/images/Neurosphere_Logo_Horizontal.png" alt="Company Logo">
+    </a>
+    <ul class="lang-switch-toggle">
+      <li><a href="?lang=jp" class="active">JP</a></li>
+      <li><a href="?lang=en">EN</a></li>
+    </ul>
+    <div class="header-hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="header-nav">
+      <ul class="nav-list">
+        <li class="has-sub">
+          <!-- 提供事業はクリック不可にしてspanを使用 -->
+          <span>PRODUCTS</span>
+          <ul class="sub-nav-list">
+            <li><a href="./services/gpu-servers.html">最新GPUサーバー調達・販売</a></li>
+            <li><a href="./services/dc-development.html">特化型データセンター開発</a></li>
+          </ul>
+        </li>
+        <li><a href="./agency.html">UPDATES</a></li>
+        <li><a href="./company.html">BLOG</a></li>
+        <li><a href="./contact.html">CARRERS</a></li>
+        <li><a href="./contact.html">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero hero-top">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="./asset/videos/top-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-top-content">
+    <h1>The AI Merge</h1>
+    <p>最新AIモデルの稼働・提供プラットフォーム</p>
+    <a href="./contact.html">お問合せ</a>
+  </div>
+</section>
+
+<!-- 事業概要セクション -->
+<section class="section business-overview">
+    <h2 class="section-title">言語生成・応答、画像・動画生成、最新のAIモデルを稼働・提供</h2>
+    <p>従来のデータセンターは汎用的なサーバー運用を前提としているため、演算密度や消費電力、冷却要求が高まる生成AI向けGPUサーバーの安定稼働への対応が困難になっています。デジタルダイナミックは、急速に拡大する生成AI市場に対応すべく、最先端GPUサーバーの確保と特殊要件に対応する専用データセンターの開発を通じて、日本のAI開発・提供基盤を世界水準へと引き上げていきます。</p>
+    <div class="business-cards">
+        <!-- GPUサーバー調達・販売カード -->
+        <div class="business-card business-card-gpu">
+            <div class="business-card-overlay">
+                <h3>最新GPUサーバー調達・販売</h3>
+                <p>AI学習・推論環境を最適化する最先端のGPUサーバーラインナップ</p>
+                <a href="#gpu-details" class="detail-link">詳細を見る</a>
+            </div>
+        </div>
+        <!-- データセンター事業カード -->
+        <div class="business-card business-card-dc">
+            <div class="business-card-overlay">
+                <h3>特化型データセンター設計・開発</h3>
+                <p>最新GPUサーバーの効率的な運用が可能な専用データセンターの開発</p>
+                <a href="#dc-details" class="detail-link">詳細を見る</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>最新情報</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Nvidia最新GPU搭載・XFusion社製GPUサーバー取扱開始</h3>
+            <p>GPUサーバー導入によりAI推論速度が2倍に</p>
+        </div>
+        <div class="card">
+            <h3>IDCフロンティア 府中データセンターで運用中のGPUクラスターへのノード追加を実施</h3>
+            <p>クラウドからオンプレ環境への移行でコスト削減</p>
+        </div>
+        <div class="card">
+            <h3>IDCフロンティア 府中データセンターで最新GPUクラスター構築を開始</h3>
+            <p>起業支援により自社データセンターを構築</p>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p><a href="company.html">会社情報</a> | <a href="#">プライバシーポリシー</a> | <a href="#">サイトマップ</a></p>
+    <p>© 2024 Neurosphere Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="./asset/js/main.js" defer></script>
+</body>
+</html>
