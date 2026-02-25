@@ -1103,10 +1103,14 @@ img {
 .contact-form {
   max-width: 900px;
   margin: 0 auto;
-  background: #fff;
-  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
   padding: 4em;
   box-sizing: border-box;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
 .form-group {
@@ -1151,17 +1155,18 @@ img {
   font-size: 1em;
   color: #333;
   border: none;
-  border-bottom: 1px solid #ccc;
-  background: none;
+  border-bottom: 2px solid #ddd;
+  background: transparent;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
   line-height: 1.4;
   margin: 0;
-  padding: 0;
+  padding: 0.5em 0;
 }
 
 .form-input:focus {
-  border-bottom-color: var(--brand-color);
+  border-bottom-color: #2FBB8C;
+  box-shadow: 0 8px 10px -10px rgba(47, 187, 140, 0.5);
 }
 
 textarea.form-input {
@@ -1194,19 +1199,23 @@ textarea.form-input {
 
 .submit-button {
   display: inline-block;
-  background: var(--brand-color);
+  background: linear-gradient(135deg, #2FBB8C, #18987b);
   color: #fff;
   border: none;
-  font-weight: bold;
-  padding: 0.8em 2em;
-  font-size: 1em;
-  border-radius: 4px;
+  font-weight: 700;
+  padding: 1em 3em;
+  font-size: 1.1em;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(47, 187, 140, 0.3);
+  letter-spacing: 0.05em;
 }
 
 .submit-button:hover {
-  background: #00a68b;
+  background: linear-gradient(135deg, #37d6a2, #1ca587);
+  box-shadow: 0 6px 20px rgba(47, 187, 140, 0.5);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 600px) {
