@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 公開するなら noindex は外すのがおすすめ。いったん index/follow に変更 -->
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="NeurosphereはAI BPO、AIプロダクト開発、AIによるDXを通じて、業務を再設計し成果を生み出すAI実装パートナーです。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トップページ | AI BPO・AIプロダクト・DX支援 | Neurosphere</title>
+
+  <link rel="stylesheet" href="/asset/css/style.css">
+  <link rel="icon" href="/asset/images/Neurosphere_Logo_Rectangle.webp">
+</head>
+
+<body>
+
+  <canvas id="networkCanvas"></canvas>
+
+  <header class="global-header">
+    <div class="container">
+      <a href="index.html" class="header-logo">
+        <img src="/asset/images/Neurosphere_Logo_Horizontal.png" alt="Company Logo">
+      </a>
+
+      <ul class="lang-switch-toggle">
+        <li><a href="?lang=jp" class="active" id="lang-jp">JP</a></li>
+        <li><a href="?lang=en" id="lang-en">EN</a></li>
+      </ul>
+
+      <div class="header-hamburger">
+        <span></span><span></span><span></span>
+      </div>
+
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li class="has-sub">
+            <span data-i18n="nav_products">PRODUCTS</span>
+            <ul class="sub-nav-list">
+              <!-- サービス再編（3本柱）に合わせ、まずはトップ内アンカーへ。
+                 servicesページを作ったら、hrefを ./services/ai-bpo.html 等に差し替えでOK -->
+              <li><a href="#services" data-i18n="nav_ai_bpo">AI BPO / 業務自動化</a></li>
+              <li><a href="#services" data-i18n="nav_ai_product">AIプロダクト開発</a></li>
+              <li><a href="#services" data-i18n="nav_ai_dx">AIによるDX</a></li>
+            </ul>
+          </li>
+
+          <li><a href="#updates" data-i18n="nav_updates">UPDATES</a></li>
+          <li><a href="./company.html" data-i18n="nav_blog">BLOG</a></li>
+          <li><a href="./contact.html" data-i18n="nav_careers">CARRERS</a></li>
+          <li><a href="./contact.html" data-i18n="nav_contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero hero-top">
+    <video autoplay muted loop playsinline class="hero-video" poster="/asset/images/datacenter_hero.webp">
+      <source src="/asset/videos/top-hero.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-top-content">
+      <h1>THE AI MERGE</h1>
+
+      <!-- ここに「1行サブコピー追加」も含めて反映 -->
+      <p data-i18n="hero_sub">
+        AI STAFF・AI BPO・各社に最適化したAIDXで、働き方を再設計する
+        <span style="display:block; margin-top:0.35em; font-size:0.95em; opacity:0.95;"
+          data-i18n="hero_sub2">PoC止まりを終わらせる。AIを業務に定着させる。</span>
+      </p>
+
+      <!-- CTA強化：主ボタン＋サブボタン（CSSを壊さないためサブはインラインで控えめに） -->
+      <div style="display:flex; gap:0.8em; justify-content:center; flex-wrap:wrap;">
+        <a href="./contact.html" data-i18n="hero_cta_primary">無料相談を申し込む</a>
+        <a href="#approach" style="background:transparent; border:1px solid rgba(255,255,255,0.75);"
+          data-i18n="hero_cta_secondary">進め方を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 事業概要セクション -->
+  <section class="section business-overview" id="services">
+    <h2 class="section-title" data-i18n="overview_title">
+      <span class="highlight">「AIを使う」</span>から、<br class="sp-only"><span class="highlight">「AIを働かせる」</span><br
+        class="sp-only">時代へ
+    </h2>
+
+    <p data-i18n="overview_body">
+      Neurosphereは、AIを単なるツールやPoCで終わらせません。<br>
+      業務プロセスの設計、AIの実装、運用・改善までを一体で提供することで、<br><br>
+      <strong>AIが現場を動かし、人が意思決定する状態を実装します。</strong><br><br>
+      AIスタッフによる業務遂行、AI BPOによる業務代替・高度化、<br>
+      個別最適化及び操作を簡略化したAI AGENTの開発と導入を通じて<br>
+      企業の生産性と競争力を根本から引き上げます。
+    </p>
+
+    <!-- 3本柱：カード3枚に拡張（CSSはそのまま。3枚目はインライン背景で対応） -->
+    <div class="business-cards">
+      <div class="business-card business-card-gpu">
+        <div class="business-card-overlay">
+          <h3 data-i18n="card_bpo_title">AI BPO / 業務自動化</h3>
+          <p data-i18n="card_bpo_body">
+            定型業務から判断支援業務まで。<br>
+            AIと人を組み合わせた業務設計で、スループットと品質を同時に向上させます。
+          </p>
+          <a href="./contact.html" class="detail-link" data-i18n="card_bpo_cta">相談する</a>
+        </div>
+      </div>
+
+      <div class="business-card business-card-dc">
+        <div class="business-card-overlay">
+          <h3 data-i18n="card_product_title">AIプロダクト開発</h3>
+          <p data-i18n="card_product_body">
+            社内外向けAIプロダクト、業務支援ツール、検索・要約・QAなど。<br>
+            継続改善できる形で設計・実装します。
+          </p>
+          <a href="./contact.html" class="detail-link" data-i18n="card_product_cta">詳細を聞く</a>
+        </div>
+      </div>
+
+      <!-- 3枚目：AIによるDX（背景は既存画像を流用） -->
+      <div class="business-card" style="background-image:url('/asset/images/datacenterconstruction.jpg');">
+        <div class="business-card-overlay">
+          <h3 data-i18n="card_dx_title">AIによるDX（業務変革）</h3>
+          <p data-i18n="card_dx_body">
+            既存業務を“AI前提”で再設計。<br>
+            データ整備、運用ルール、KPIまで含めて成果に繋げます。
+          </p>
+          <a href="#approach" class="detail-link" data-i18n="card_dx_cta">進め方を見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 提供価値（数字で語る） -->
+  <section class="section" id="value">
+    <h2 data-i18n="value_title">成果に直結する<br class="sp-only">設計と運用</h2>
+    <div data-i18n="value_body" style="text-align: center; margin-bottom: 3em;">
+      <p class="value-catchphrase">「AIを使いきれない。」<br>「現場に定着しない。」<br>「学ばせる時間がない」</p>
+      <p class="value-highlight-text">そんな悩みはもう不要です！</p>
+      <p class="value-lead">以下は一般的に狙える改善領域です（数値は案件により設計します）。</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="value_card1_title">業務の自動化</h3>
+        <p data-i18n="value_card1_body">CS業務・入力作業・リサーチ・マーケティング・分析などの作業を自動化<br>担当者による意思決定と承認のもとAIが業務を遂行します</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="value_card2_title">スタッフの能力拡張</h3>
+        <p data-i18n="value_card2_body">より細やかなリサーチ、分析を元に<br>プロジェクトのクオリティーをアップ<br>専門人材不足の解消</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="value_card3_title">品質とガバナンス</h3>
+        <p data-i18n="value_card3_body">ルールに応じた承認プロセスによる<br>内部統制管理強化<br>品質のブレ防止</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 進め方（4ステップ） -->
+  <section class="section" id="approach">
+    <h2 data-i18n="approach_title">進め方</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="approach_1_title">1. 現状診断</h3>
+        <p data-i18n="approach_1_body">業務棚卸し・データ確認・KPI整理</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="approach_2_title">2. 設計</h3>
+        <p data-i18n="approach_2_body">業務フロー再設計・AI適用範囲・ガバナンス</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="approach_3_title">3. 実装</h3>
+        <p data-i18n="approach_3_body">ワークフロー/モデル選定・統合/AI AGENT開発</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="approach_4_title">4. 運用改善</h3>
+        <p data-i18n="approach_4_body">業務の自動化・モニタリング・改善サイクル<br><br>個別最適化が必要なケースは、AI
+          AGENTを弊社にてBPO運用し成果物を保証。<br>最適化と簡略化が完了した時点で現場への導入を行います。</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5em;">
+      <a href="./contact.html" class="detail-link" data-i18n="approach_cta">まずは無料相談</a>
+    </div>
+  </section>
+
+  <!-- 対象領域 -->
+  <section class="section" id="domains">
+    <h2 data-i18n="domains_title">対象領域</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="domains_1_title">コールセンター / CS</h3>
+        <p data-i18n="domains_1_body">一次応対、要約、ナレッジ検索、品質管理</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="domains_2_title">営業事務・契約/請求</h3>
+        <p data-i18n="domains_2_body">作成/確認/照合、文書処理、ルールベース＋AI</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="domains_3_title">バックオフィス</h3>
+        <p data-i18n="domains_3_body">人事・経理・総務、申請処理、社内問い合わせ</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="domains_4_title">マーケティングリサーチ</h3>
+        <p data-i18n="domains_4_body">情報収集、分析、ビュジュアル作成、<br>資料作成、共有</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="domains_5_title">クリエイティブ制作</h3>
+        <p data-i18n="domains_5_body">商品分析、戦略策定、コンテ作成、<br>クリエイティブ作成、資料作成</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="domains_6_title">マネージメント</h3>
+        <p data-i18n="domains_6_body">タスク管理、タスク分析、ヒアリング、<br>進捗分析と報告</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新情報 -->
+  <section class="section" id="updates">
+    <h2 data-i18n="updates_title">最新情報・取り組み</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="updates_1_title">AI BPO導入で業務処理を効率化</h3>
+        <p data-i18n="updates_1_body">人とAIの役割分担を再設計し、<br>スループットと品質を両立</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="updates_2_title">AIスタッフの実装支援・導入</h3>
+        <p data-i18n="updates_2_body">既存業務をAIスタッフが自律的に<br>承認を得ながら実行します。</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="updates_3_title">AI AGENTの業務DXを推進</h3>
+        <p data-i18n="updates_3_body">様々なAIをワークフローで連携させることにより、<br>ツールの横断的使用を不要にします。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>
+        <a href="company.html" data-i18n="footer_company">会社情報</a> |
+        <!-- プライバシーポリシーを作るまで一旦 contact へ。作ったら privacy.html などに差し替え -->
+        <a href="./contact.html" data-i18n="footer_privacy">プライバシーポリシー</a> |
+        <a href="#services" data-i18n="footer_sitemap">サイトマップ</a>
+      </p>
+      <p data-i18n="footer_copyright">© 2026 Neurosphere Inc. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 既存JSはそのまま -->
+  <script src="/asset/js/main.js?v=5" defer></script>
+
+  <!-- 言語切り替え（index.html内だけで完結させる軽量実装）
+     既存の ?lang=jp / ?lang=en を活かし、DOMを壊さずに文言差し替え -->
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const lang = (params.get("lang") || "jp").toLowerCase();
+
+      const jpBtn = document.getElementById("lang-jp");
+      const enBtn = document.getElementById("lang-en");
+
+      function setActive() {
+        if (!jpBtn || !enBtn) return;
+        if (lang === "en") {
+          jpBtn.classList.remove("active");
+          enBtn.classList.add("active");
+        } else {
+          enBtn.classList.remove("active");
+          jpBtn.classList.add("active");
+        }
+      }
+
+      const dict = {
+        jp: {
+          nav_products: "PRODUCTS",
+          nav_ai_bpo: "AI BPO / 業務自動化",
+          nav_ai_product: "AIプロダクト開発",
+          nav_ai_dx: "AIによるDX",
+          nav_updates: "UPDATES",
+          nav_blog: "BLOG",
+          nav_careers: "CARRERS",
+          nav_contact: "CONTACT",
+
+          hero_sub: "AI STAFF・AI BPO・各社に最適化したAIDXで、働き方を再設計する",
+          hero_sub2: "PoC止まりを終わらせる。AIを業務に定着させる。",
+          hero_cta_primary: "無料相談を申し込む",
+          hero_cta_secondary: "進め方を見る",
+
+          overview_title: "<span class='highlight'>「AIを使う」</span>から、<br class='sp-only'><span class='highlight'>「AIを働かせる」</span><br class='sp-only'>時代へ",
+          overview_body:
+            "Neurosphereは、AIを単なるツールやPoCで終わらせません。<br>業務プロセスの設計、AIの実装、運用・改善までを一体で提供することで、<br><br><strong>AIが現場を動かし、人が意思決定する状態を実装します。</strong><br><br>AIスタッフによる業務遂行、AI BPOによる業務代替・高度化、<br>個別最適化及び操作を簡略化したAI AGENTの開発と導入を通じて<br>企業の生産性と競争力を根本から引き上げます。",
+
+          card_bpo_title: "AI BPO / 業務自動化",
+          card_bpo_body: "定型業務から判断支援業務まで。<br>AIと人を組み合わせた業務設計で、スループットと品質を同時に向上させます。",
+          card_bpo_cta: "相談する",
+
+          card_product_title: "AIプロダクト開発",
+          card_product_body: "社内外向けAIプロダクト、業務支援ツール、検索・要約・QAなど。<br>継続改善できる形で設計・実装します。",
+          card_product_cta: "詳細を聞く",
+
+          card_dx_title: "AIによるDX（業務変革）",
+          card_dx_body: "既存業務を“AI前提”で再設計。<br>データ整備、運用ルール、KPIまで含めて成果に繋げます。",
+          card_dx_cta: "進め方を見る",
+
+          value_title: "成果に直結する<br class='sp-only'>設計と運用",
+          value_body: "<p class='value-catchphrase'>「AIを使いきれない。」<br>「現場に定着しない。」<br>「学ばせる時間がない」</p><p class='value-highlight-text'>そんな悩みはもう不要です！</p><p class='value-lead'>以下は一般的に狙える改善領域です（数値は案件により設計します）。</p>",
+          value_card1_title: "業務の自動化",
+          value_card1_body: "CS業務・入力作業・リサーチ・マーケティング・分析などの作業を自動化<br>担当者による意思決定と承認のもとAIが業務を遂行します",
+          value_card2_title: "スタッフの能力拡張",
+          value_card2_body: "より細やかなリサーチ、分析を元に<br>プロジェクトのクオリティーをアップ<br>専門人材不足の解消",
+          value_card3_title: "品質とガバナンス",
+          value_card3_body: "ルールに応じた承認プロセスによる<br>内部統制管理強化<br>品質のブレ防止",
+
+          approach_title: "進め方",
+          approach_1_title: "1. 現状診断",
+          approach_1_body: "業務棚卸し・データ確認・KPI整理",
+          approach_2_title: "2. 設計",
+          approach_2_body: "業務フロー再設計・AI適用範囲・ガバナンス",
+          approach_3_title: "3. 実装",
+          approach_3_body: "ワークフロー/モデル選定・統合/AI AGENT開発",
+          approach_4_title: "4. 運用改善",
+          approach_4_body: "業務の自動化・モニタリング・改善サイクル<br><br>個別最適化が必要なケースは、AI AGENTを弊社にてBPO運用し成果物を保証。<br>最適化と簡略化が完了した時点で現場への導入を行います。",
+          approach_cta: "まずは無料相談",
+
+          domains_title: "対象領域",
+          domains_1_title: "コールセンター / CS",
+          domains_1_body: "一次応対、要約、ナレッジ検索、品質管理",
+          domains_2_title: "営業事務・契約/請求",
+          domains_2_body: "作成/確認/照合、文書処理、ルールベース＋AI",
+          domains_3_title: "バックオフィス",
+          domains_3_body: "人事・経理・総務、申請処理、社内問い合わせ",
+          domains_4_title: "マーケティングリサーチ",
+          domains_4_body: "情報収集、分析、ビュジュアル作成、<br>資料作成、共有",
+          domains_5_title: "クリエイティブ制作",
+          domains_5_body: "商品分析、戦略策定、コンテ作成、<br>クリエイティブ作成、資料作成",
+          domains_6_title: "マネージメント",
+          domains_6_body: "タスク管理、タスク分析、ヒアリング、<br>進捗分析と報告",
+
+          updates_title: "最新情報・取り組み",
+          updates_1_title: "AI BPO導入で業務処理を効率化",
+          updates_1_body: "人とAIの役割分担を再設計し、<br>スループットと品質を両立",
+          updates_2_title: "AIスタッフの実装支援・導入",
+          updates_2_body: "既存業務をAIスタッフが自律的に<br>承認を得ながら実行します。",
+          updates_3_title: "AI AGENTの業務DXを推進",
+          updates_3_body: "様々なAIをワークフローで連携させることにより、<br>ツールの横断的使用を不要にします。",
+
+          footer_company: "会社情報",
+          footer_privacy: "プライバシーポリシー",
+          footer_sitemap: "サイトマップ",
+          footer_copyright: "© 2026 Neurosphere Inc. All Rights Reserved."
+        },
+
+        en: {
+          nav_products: "PRODUCTS",
+          nav_ai_bpo: "AI BPO / Ops Automation",
+          nav_ai_product: "AI Product Development",
+          nav_ai_dx: "AI-driven DX",
+          nav_updates: "UPDATES",
+          nav_blog: "BLOG",
+          nav_careers: "CARRERS",
+          nav_contact: "CONTACT",
+
+          hero_sub: "Redesigning work styles with AI STAFF, AI BPO, and custom-optimized AI DX for every company.",
+          hero_sub2: "End PoC-only. Make AI stick and deliver outcomes.",
+          hero_cta_primary: "Book a Free Consultation",
+          hero_cta_secondary: "See Our Approach",
+
+          overview_title: "From <span class='highlight'>“Using AI”</span> to the Era of <span class='highlight'>“Making AI Work”</span>",
+          overview_body:
+            "Neurosphere doesn’t stop at tooling or PoCs.<br>We deliver an end-to-end implementation: process design, AI build, and continuous operations—<br><br>so AI drives the workflow and humans make the decisions.<br><br>Through execution by AI staff, automation and enhancement by AI BPO,<br>and the development and implementation of custom-optimized, simplified AI AGENTs,<br>we elevate productivity and strengthen competitiveness at the core.",
+
+          card_bpo_title: "AI BPO / Operations Automation",
+          card_bpo_body: "From routine tasks to decision support.<br>We design human+AI operations to boost throughput and quality together.",
+          card_bpo_cta: "Talk to Us",
+
+          card_product_title: "AI Product Development",
+          card_product_body: "AI features for internal/external users: search, summarization, QA, and more.<br>Built to be operated and improved continuously.",
+          card_product_cta: "Learn More",
+
+          card_dx_title: "AI-driven DX (Process Transformation)",
+          card_dx_body: "Redesign workflows with AI-first thinking.<br>Data, governance, and KPIs included—so outcomes are measurable and sustained.",
+          card_dx_cta: "See How We Work",
+
+          value_title: "Designed for outcomes—built for operations",
+          value_body: "We focus on operational quality so AI doesn’t stall after rollout.<br><br>These are common improvement areas (exact metrics depend on the design).",
+          value_card1_title: "Faster cycle time",
+          value_card1_body: "Reduce effort across response, input, and verification workflows",
+          value_card2_title: "Higher throughput",
+          value_card2_body: "Increase per-person capacity and smooth peak demand",
+          value_card3_title: "Quality & governance",
+          value_card3_body: "Reduce errors and rework with rules and auditability",
+
+          approach_title: "How we deliver",
+          approach_1_title: "1. Assessment",
+          approach_1_body: "Process mapping, data review, KPI alignment",
+          approach_2_title: "2. Design",
+          approach_2_body: "Workflow redesign, AI scope, governance",
+          approach_3_title: "3. Build",
+          approach_3_body: "Tools, workflows, model selection & integration",
+          approach_4_title: "4. Operate & Improve",
+          approach_4_body: "Adoption, monitoring, continuous improvement",
+          approach_cta: "Start with a Free Call",
+
+          domains_title: "Typical domains",
+          domains_1_title: "Contact Center / CS",
+          domains_1_body: "Triage, summarization, knowledge search, QA",
+          domains_2_title: "Sales Ops / Contracts / Billing",
+          domains_2_body: "Drafting, review, reconciliation, doc automation",
+          domains_3_title: "Back Office",
+          domains_3_body: "HR, accounting, admin, internal inquiries",
+
+          updates_title: "Updates & initiatives",
+          updates_1_title: "Operational gains via AI BPO",
+          updates_1_body: "Redesign roles and workflows to improve throughput and quality",
+          updates_2_title: "AI product implementation support",
+          updates_2_body: "Ship AI features that can be operated and improved over time",
+          updates_3_title: "AI-first DX execution",
+          updates_3_body: "Align workflows, data, KPIs, and operating rules for adoption",
+
+          footer_company: "Company",
+          footer_privacy: "Privacy Policy",
+          footer_sitemap: "Sitemap",
+          footer_copyright: "© 2026 Neurosphere Inc. All Rights Reserved."
+        }
+      };
+
+      function applyI18n(language) {
+        const map = dict[language] || dict.jp;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (!key || !(key in map)) return;
+          el.innerHTML = map[key];
+        });
+      }
+
+      setActive();
+      applyI18n(lang === "en" ? "en" : "jp");
+    })();
+  </script>
+
+</body>
+
+</html>
