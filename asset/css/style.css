@@ -687,6 +687,9 @@ img {
   justify-content: center;
   color: #fff;
   text-align: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .business-card-gpu {
@@ -719,9 +722,11 @@ img {
 }
 
 .business-card-overlay p {
-  margin-bottom: 1.5em;
-  font-size: 1.0em;
-  line-height: 1.5;
+  margin-bottom: 2em;
+  font-size: 1.05em;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .detail-link {
