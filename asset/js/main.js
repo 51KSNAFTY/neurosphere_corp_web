@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const particleTexture = new THREE.CanvasTexture(particleCanvas);
 
       const pointMaterial = new THREE.PointsMaterial({
-        color: 0xffffff,
+        color: 0x2FBB8C,
         size: 10,
         transparent: true,
         opacity: 0.9,
