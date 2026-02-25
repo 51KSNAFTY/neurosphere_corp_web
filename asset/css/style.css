@@ -116,12 +116,14 @@ img {
    ヘッダー・グローバルナビゲーション
 ------------------------------------------------------------ */
 .global-header {
-  position: relative;
-  z-index: 1000;
-  /* より大きな値に設定 */
+  position: sticky;
   top: 0;
+  z-index: 9999;
   width: 100%;
-  background: var(--header-bg);
+  background: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .global-header .container {
@@ -335,10 +337,7 @@ img {
 
 /* モバイル対応（768px以下） */
 @media (max-width: 768px) {
-  .global-header {
-    position: relative;
-    z-index: 1000;
-  }
+
 
   .header-hamburger {
     display: flex;
