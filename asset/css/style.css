@@ -54,128 +54,29 @@ img {
 }
 
 .loader-content {
-  position: relative;
-  width: 200px;
-  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.loader-svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  animation: svgPulse 3s infinite ease-in-out;
-}
-
-.loader-circle-spin {
-  transform-origin: center;
-  animation: drawCircle 2s cubic-bezier(0.4, 0, 0.2, 1) infinite, spin 3s linear infinite;
-}
-
-.loader-hex {
-  transform-origin: center;
-  animation: spinReverse 10s linear infinite;
-}
-
-.loader-logo-inside {
-  width: 90px;
+.loader-logo-minimal {
+  width: 220px;
   height: auto;
-  z-index: 2;
-  animation: pulseLogoSubtle 2s infinite ease-in-out;
+  opacity: 0;
+  animation: fadeInLogo 0.5s ease-out forwards;
 }
 
-.loader-text {
-  position: absolute;
-  bottom: -40px;
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  color: #2FBB8C;
-  font-weight: bold;
-  opacity: 0.8;
-  animation: blinkText 1.5s infinite;
-}
-
-@keyframes drawCircle {
+@keyframes fadeInLogo {
   0% {
-    stroke-dashoffset: 477;
-  }
-
-  50% {
-    stroke-dashoffset: 0;
-  }
-
-  100% {
-    stroke-dashoffset: 477;
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spinReverse {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes pulseLogoSubtle {
-  0% {
+    opacity: 0;
+    filter: blur(10px);
     transform: scale(0.95);
-    opacity: 0.8;
-    filter: drop-shadow(0 0 0px #2FBB8C);
   }
 
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-    filter: drop-shadow(0 0 10px #2FBB8C);
-  }
-
-  100% {
-    transform: scale(0.95);
-    opacity: 0.8;
-    filter: drop-shadow(0 0 0px #2FBB8C);
-  }
-}
-
-@keyframes blinkText {
-
-  0%,
   100% {
     opacity: 1;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes svgPulse {
-
-  0%,
-  100% {
-    filter: drop-shadow(0 0 2px rgba(47, 187, 140, 0.5));
-  }
-
-  50% {
-    filter: drop-shadow(0 0 15px rgba(47, 187, 140, 0.8));
+    filter: blur(0px);
+    transform: scale(1);
   }
 }
 
