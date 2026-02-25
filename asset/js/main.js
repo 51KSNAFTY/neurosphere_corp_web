@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // ローディングアニメーション制御
+  // ローディングアニメーション制御 (シンプル・高速化)
   const loader = document.getElementById('global-loader');
   if (loader) {
-    // ページロード完了時に非表示
-    const hideLoader = () => {
+    // DOM構築後、少しだけ見せてすぐ消す（サクサク感を重視）
+    setTimeout(() => {
       loader.classList.add('hidden');
-    };
-    window.addEventListener('load', hideLoader);
-    // 念のため5秒経過したら強制非表示
-    setTimeout(hideLoader, 5000);
+    }, 600);
   }
   // ハンバーガーメニュー処理
   const hamburger = document.querySelector('.header-hamburger');
