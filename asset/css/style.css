@@ -757,7 +757,7 @@ img {
 }
 
 .detail-link:hover {
-  background: transparent;
+  background: #fff;
   color: #2FBB8C;
   border-color: #2FBB8C;
   transform: scale(1.05);
