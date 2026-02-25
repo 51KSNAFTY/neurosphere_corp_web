@@ -95,6 +95,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ──────────────────────────────────────────────
+  // スクロールフェードインアニメーション
+  // ──────────────────────────────────────────────
+  const revealElements = document.querySelectorAll('.js-reveal-text');
+  if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 少し遅延を入れてから表示（自然なフェージング）
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, 100);
+          // 一度表示したら監視を解除する場合:
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Observer非対応ブラウザへのフォールバック
+    revealElements.forEach(el => el.classList.add('is-visible'));
+  }
+
   // ネットワークアニメーション処理 (Three.js)
   const canvas = document.getElementById('networkCanvas');
   if (canvas) {
