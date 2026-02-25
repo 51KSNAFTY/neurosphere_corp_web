@@ -1280,3 +1280,31 @@ footer p {
   position: relative;
   z-index: auto;
 }
+
+@media (max-width: 768px) {
+
+  /* メインビジュアルをファーストビューで全画面 */
+  .hero-top {
+    height: 100svh;
+  }
+
+  /* セクションタイトルのフォントサイズを縮小して1行に収める */
+  .section h2,
+  .section-title {
+    font-size: 1.6rem !important;
+    word-break: keep-all;
+  }
+
+  /* 言語切り替えボタンの崩れを修正 */
+  .lang-switch-toggle {
+    margin-left: auto;
+    margin-right: 15px;
+    font-size: 0.75rem;
+    width: 80px;
+  }
+
+  /* ロゴが大きくて圧迫する場合の微調整 */
+  .header-logo img {
+    height: 35px;
+  }
+}
