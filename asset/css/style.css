@@ -581,12 +581,46 @@ img {
 }
 
 .hero-top-content h1 {
-  font-weight: 400;
-  margin: 0 0 0 0;
+  font-weight: 700;
+  margin: 0;
   line-height: 1.0;
   font-size: 8rem;
-  /* 常に非常に大きなサイズ */
-  color: #fff;
+  /* Cinematic wipe from white to red-brown */
+  background: linear-gradient(to right,
+      #ffffff 0%,
+      #ffffff 30%,
+      #ffd4cc 40%,
+      #E35345 50%,
+      #8e1a0f 60%,
+      #E35345 70%,
+      #E35345 100%);
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  opacity: 0;
+  transform: translateY(30px);
+  animation:
+    heroFadeUp 1s ease-out forwards,
+    liquidColorMerge 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.2s;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes liquidColorMerge {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .hero-top-content p {
