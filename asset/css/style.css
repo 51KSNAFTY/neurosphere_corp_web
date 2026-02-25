@@ -653,6 +653,8 @@ img {
   display: inline-block;
   padding: 0 4px;
   position: relative;
+  text-shadow: none;
+  /* override inherited text-shadow so the transparent text fill isn't masked by white shadows */
 }
 
 .highlight::after {
