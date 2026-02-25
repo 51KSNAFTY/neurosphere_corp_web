@@ -657,6 +657,7 @@ img {
   color: #444;
   margin-bottom: 2em;
   letter-spacing: 0.05em;
+  text-align: center;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
@@ -665,7 +666,8 @@ img {
   font-weight: 800;
   margin-bottom: 1.5em;
   color: #2FBB8C;
-  display: inline-block;
+  display: block;
+  text-align: center;
   letter-spacing: 0.08em;
   position: relative;
   text-shadow: 0 0 8px rgba(47, 187, 140, 0.3);
@@ -687,6 +689,7 @@ img {
   font-size: 1.1rem;
   color: #666;
   margin-top: 1em;
+  text-align: center;
 }
 
 /* ------------------------------------------------------------
