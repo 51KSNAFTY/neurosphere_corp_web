@@ -727,10 +727,10 @@ img {
   color: #fff;
   background: var(--brand-color, #2172AF);
   text-decoration: none;
-  padding: 0.8em 1.5em;
-  font-size: 1.25rem;
+  padding: 1em 3em;
+  font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 50px;
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 6px rgba(47, 187, 140, 0.3);
 }
