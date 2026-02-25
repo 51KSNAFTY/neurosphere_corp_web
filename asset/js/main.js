@@ -34,165 +34,169 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // ネットワークアニメーション処理
+  // ネットワークアニメーション処理 (Three.js)
   const canvas = document.getElementById('networkCanvas');
-  const ctx = canvas.getContext('2d');
+  if (canvas) {
+    import('https://unpkg.com/three@0.160.0/build/three.module.js').then((THREE) => {
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0xffffff, 0.002);
 
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 250;
 
-  let NODE_COUNT;
-  let CONNECT_DISTANCE;
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const LINE_COLOR = '#d6dbea';
-  const NODE_COLOR = '#d6dbea';
-  const NODE_SIZE = 3;
-  const PULSE_SPEED = 0.1;
-  const PULSE_SPAWN_INTERVAL = 1000;
-  let lastPulseSpawn = Date.now();
+      const particleCount = 200;
+      const maxDistance = 65;
+      const positions = new Float32Array(particleCount * 3);
+      const velocities = [];
 
-  const MAX_SPEED = 0.3;
-  let nodes = [];
-  let edges = [];
-  let pulses = [];
+      for (let i = 0; i < particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 500;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 500;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 500;
 
-  function calculateParameters() {
-    const area = width * height;
-    NODE_COUNT = Math.round(Math.sqrt(area)/20);
-    NODE_COUNT = Math.min(Math.max(NODE_COUNT,30),150);
+        velocities.push({
+          x: (Math.random() - 0.5) * 0.3,
+          y: (Math.random() - 0.5) * 0.3,
+          z: (Math.random() - 0.5) * 0.3
+        });
+      }
 
-    CONNECT_DISTANCE = Math.min(Math.max(Math.sqrt(area)/5,100),250);
-  }
+      const pointGeometry = new THREE.BufferGeometry();
+      pointGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-  function initNetwork() {
-    nodes = [];
-    edges = [];
-    pulses = [];
+      const particleCanvas = document.createElement('canvas');
+      particleCanvas.width = 32;
+      particleCanvas.height = 32;
+      const context = particleCanvas.getContext('2d');
+      const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+      gradient.addColorStop(0, 'rgba(47,187,140,0.8)'); // #2FBB8C
+      gradient.addColorStop(1, 'rgba(47,187,140,0)');
+      context.fillStyle = gradient;
+      context.beginPath();
+      context.arc(16, 16, 16, 0, Math.PI * 2, true);
+      context.fill();
+      const particleTexture = new THREE.CanvasTexture(particleCanvas);
 
-    for(let i=0; i<NODE_COUNT; i++){
-      nodes.push({
-        x: Math.random()*width,
-        y: Math.random()*height,
-        dx: (Math.random()-0.5)*MAX_SPEED,
-        dy: (Math.random()-0.5)*MAX_SPEED
+      const pointMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 10,
+        transparent: true,
+        opacity: 0.9,
+        map: particleTexture,
+        depthWrite: false
       });
-    }
 
-    calculateEdges();
+      const particles = new THREE.Points(pointGeometry, pointMaterial);
+      scene.add(particles);
 
-    // 初期パルス複数発生で開始直後から動きが把握しやすい
-    for(let i=0; i<5; i++){
-      spawnPulse();
-    }
-  }
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x2FBB8C,
+        transparent: true,
+        opacity: 0.25,
+      });
 
-  function calculateEdges() {
-    edges.length = 0;
-    for(let i=0; i<nodes.length; i++){
-      for(let j=i+1; j<nodes.length; j++){
-        const dx = nodes[j].x - nodes[i].x;
-        const dy = nodes[j].y - nodes[i].y;
-        const dist = Math.sqrt(dx*dx+dy*dy);
-        if(dist < CONNECT_DISTANCE) {
-          edges.push({a:i,b:j,length:dist});
+      const maxLines = 6000;
+      const linePositions = new Float32Array(maxLines * 6);
+      const lineGeometry = new THREE.BufferGeometry();
+      lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+      
+      const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+      scene.add(linesMesh);
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      let windowHalfX = window.innerWidth / 2;
+      let windowHalfY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX - windowHalfX);
+        mouseY = (event.clientY - windowHalfY);
+      });
+
+      window.addEventListener('resize', () => {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const posAttribute = pointGeometry.attributes.position;
+        let lineVertexIndex = 0;
+
+        for (let i = 0; i < particleCount; i++) {
+          velocities[i].x += (Math.random() - 0.5) * 0.01;
+          velocities[i].y += (Math.random() - 0.5) * 0.01;
+          velocities[i].z += (Math.random() - 0.5) * 0.01;
+
+          const speed = Math.sqrt(velocities[i].x**2 + velocities[i].y**2 + velocities[i].z**2);
+          if (speed > 0.4) {
+            velocities[i].x *= 0.4 / speed;
+            velocities[i].y *= 0.4 / speed;
+            velocities[i].z *= 0.4 / speed;
+          }
+
+          let x = posAttribute.getX(i) + velocities[i].x;
+          let y = posAttribute.getY(i) + velocities[i].y;
+          let z = posAttribute.getZ(i) + velocities[i].z;
+
+          if (x > 250 || x < -250) velocities[i].x *= -1;
+          if (y > 250 || y < -250) velocities[i].y *= -1;
+          if (z > 250 || z < -250) velocities[i].z *= -1;
+
+          posAttribute.setXYZ(i, x, y, z);
+
+          for (let j = i + 1; j < particleCount; j++) {
+            const dx = x - posAttribute.getX(j);
+            const dy = y - posAttribute.getY(j);
+            const dz = z - posAttribute.getZ(j);
+            const distSq = dx * dx + dy * dy + dz * dz;
+
+            if (distSq < maxDistance * maxDistance && lineVertexIndex < maxLines * 2) {
+              linePositions[lineVertexIndex * 3] = x;
+              linePositions[lineVertexIndex * 3 + 1] = y;
+              linePositions[lineVertexIndex * 3 + 2] = z;
+              lineVertexIndex++;
+
+              linePositions[lineVertexIndex * 3] = posAttribute.getX(j);
+              linePositions[lineVertexIndex * 3 + 1] = posAttribute.getY(j);
+              linePositions[lineVertexIndex * 3 + 2] = posAttribute.getZ(j);
+              lineVertexIndex++;
+            }
+          }
         }
+
+        posAttribute.needsUpdate = true;
+
+        for (let i = lineVertexIndex; i < maxLines * 2; i++) {
+          linePositions[i * 3] = 0;
+          linePositions[i * 3 + 1] = 0;
+          linePositions[i * 3 + 2] = 0;
+        }
+        lineGeometry.attributes.position.needsUpdate = true;
+        
+        scene.rotation.y += 0.001;
+        scene.rotation.x += 0.0005;
+
+        targetX = mouseX * 0.03;
+        targetY = mouseY * 0.03;
+        camera.position.x += (targetX - camera.position.x) * 0.02;
+        camera.position.y += (-targetY - camera.position.y) * 0.02;
+        camera.lookAt(scene.position);
+
+        renderer.render(scene, camera);
       }
-    }
+
+      animate();
+    }).catch(err => console.error('Three.js failed to load:', err));
   }
-
-  function spawnPulse() {
-    if(edges.length > 0) {
-      const e = edges[Math.floor(Math.random()*edges.length)];
-      pulses.push({ edge: e, progress: 0 });
-    }
-  }
-
-  function updateNodes() {
-    for(let n of nodes) {
-      n.x += n.dx;
-      n.y += n.dy;
-      // 画面境界でバウンス
-      if(n.x < 0 || n.x > width) n.dx = -n.dx;
-      if(n.y < 0 || n.y > height) n.dy = -n.dy;
-    }
-  }
-
-  function drawNetwork() {
-    calculateEdges();
-
-    ctx.strokeStyle = LINE_COLOR;
-    ctx.lineWidth = 1;
-
-    // エッジ描画
-    for(let e of edges) {
-      const nA = nodes[e.a];
-      const nB = nodes[e.b];
-      ctx.beginPath();
-      ctx.moveTo(nA.x,nA.y);
-      ctx.lineTo(nB.x,nB.y);
-      ctx.stroke();
-    }
-
-    // パルス描画
-    for(let p of pulses) {
-      const e = p.edge;
-      const nA = nodes[e.a];
-      const nB = nodes[e.b];
-      const px = nA.x + (nB.x - nA.x)*p.progress;
-      const py = nA.y + (nB.y - nA.y)*p.progress;
-      ctx.fillStyle = '#2FBB8C';
-      ctx.beginPath();
-      ctx.arc(px, py, 2, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    // ノード描画
-    for(let i=0; i<nodes.length; i++){
-      ctx.fillStyle = NODE_COLOR;
-      ctx.beginPath();
-      ctx.arc(nodes[i].x, nodes[i].y, NODE_SIZE, 0, Math.PI*2);
-      ctx.fill();
-    }
-  }
-
-  function updatePulses() {
-    for(let i=pulses.length-1; i>=0; i--){
-      pulses[i].progress += PULSE_SPEED;
-      if(pulses[i].progress > 1) {
-        pulses.splice(i,1);
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0,0,width,height);
-
-    updateNodes();
-    drawNetwork();
-    updatePulses();
-
-    if(Date.now() - lastPulseSpawn > PULSE_SPAWN_INTERVAL) {
-      spawnPulse();
-      lastPulseSpawn = Date.now();
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  function onResize(){
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-    calculateParameters();
-    initNetwork(); 
-  }
-
-  window.addEventListener('resize', onResize);
-
-  calculateParameters();
-  initNetwork();
-  animate();
 });
