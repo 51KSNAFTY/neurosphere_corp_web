@@ -722,11 +722,11 @@ img {
 }
 
 .business-card-overlay p {
-  margin-bottom: 2em;
-  font-size: 1.05em;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2.5em;
+  font-size: 1.1em;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .detail-link {
@@ -734,18 +734,18 @@ img {
   color: #fff;
   background: var(--brand-color, #2172AF);
   text-decoration: none;
-  padding: 1em 3em;
-  font-size: 1.5rem;
+  padding: 0.8em 2em;
+  font-size: 1.15rem;
   font-weight: bold;
   border-radius: 50px;
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 6px rgba(47, 187, 140, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 10px rgba(47, 187, 140, 0.3);
 }
 
 .detail-link:hover {
-  background: #00a68b;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(47, 187, 140, 0.4);
+  background: linear-gradient(135deg, #2FBB8C, #1a8f68);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(47, 187, 140, 0.6), 0 0 15px rgba(47, 187, 140, 0.4);
 }
 
 @media (max-width: 768px) {
