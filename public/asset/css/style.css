@@ -1356,7 +1356,6 @@ footer p {
 }
 
 /* コンテンツを前面に表示 */
-.global-header,
 .breadcrumb-section,
 .hero-company,
 .company-overview-section,
@@ -1384,8 +1383,13 @@ footer p {
   .lang-switch-toggle {
     margin-left: auto;
     margin-right: 15px;
-    font-size: 0.75rem;
-    width: 80px;
+    font-size: 0.70rem;
+    width: 65px;
+  }
+
+  .lang-switch-toggle li a {
+    padding: 0.4em 0.5em;
+    /* 左右のパディングを減らして文字の折り返しを防止 */
   }
 
   /* ロゴが大きくて圧迫する場合の微調整 */
