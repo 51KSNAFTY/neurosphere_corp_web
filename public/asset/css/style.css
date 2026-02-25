@@ -4,48 +4,101 @@
    ベーススタイル・リセット
 ------------------------------------------------------------ */
 html {
-    box-sizing: border-box;
-    font-size: 16px;
+  box-sizing: border-box;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
-*, *::before, *::after {
-    box-sizing: inherit;
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
+
 body {
-    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #1e1e1e;
-    line-height: 1.5;
-    background: #fefefe;
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #1e1e1e;
+  line-height: 1.5;
+  background: #fefefe;
 }
+
 code {
   font-family: 'Noto Sans Mono', monospace;
 }
+
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   ローディング画面
+------------------------------------------------------------ */
+#global-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #fefefe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+#global-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-logo-minimal {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  animation: fadeInLogo 0.5s ease-out forwards;
+}
+
+@keyframes fadeInLogo {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
 }
 
 /* ------------------------------------------------------------
    カラーパレット・カスタムプロパティ
 ------------------------------------------------------------ */
 :root {
-    --brand-color: linear-gradient(#2FBB8C, #74CCA3);
-    --text-color: #1e1e1e;
-    --bg-color: #fff;
-    --header-bg: #1e1e1e;
-    --footer-bg: #none;
-    --border-color: #e6e6e6;
+  --brand-color: linear-gradient(#2FBB8C, #74CCA3);
+  --text-color: #1e1e1e;
+  --bg-color: #fff;
+  --header-bg: #1e1e1e;
+  --footer-bg: #none;
+  --border-color: #e6e6e6;
 }
 
 /* ------------------------------------------------------------
    レイアウト共通
 ------------------------------------------------------------ */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* ------------------------------------------------------------
@@ -53,11 +106,13 @@ img {
 ------------------------------------------------------------ */
 .global-header {
   position: relative;
-  z-index: 1000; /* より大きな値に設定 */
+  z-index: 1000;
+  /* より大きな値に設定 */
   top: 0;
   width: 100%;
   background: var(--header-bg);
 }
+
 .global-header .container {
   display: flex;
   align-items: center;
@@ -76,7 +131,7 @@ img {
 
 /* 初期状態：モバイルではナビ非表示、PCで@media指定 */
 .header-nav {
-  display: none; 
+  display: none;
 }
 
 /* 親メニューリスト */
@@ -93,6 +148,7 @@ img {
     align-items: center;
     gap: 2em;
   }
+
   .nav-list {
     display: flex;
     gap: 2em;
@@ -104,8 +160,9 @@ img {
 .nav-list li {
   position: relative;
 }
+
 .nav-list li a,
-.has-sub > span {
+.has-sub>span {
   position: relative;
   color: #fefefe;
   text-decoration: none;
@@ -113,8 +170,9 @@ img {
   padding-bottom: 4px;
   display: inline-block;
 }
+
 .nav-list li a::after,
-.has-sub > span::after {
+.has-sub>span::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -126,8 +184,9 @@ img {
   transform-origin: center;
   transition: transform 0.3s ease;
 }
+
 .nav-list li a:hover::after,
-.has-sub > span:hover::after {
+.has-sub>span:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
 
@@ -139,8 +198,9 @@ img {
   display: flex;
   margin: 0;
   padding: 0;
-  border: 1px solid #fefefe; /* 全体を#fefefeのボーダーで囲む */
-  overflow: hidden; 
+  border: 1px solid #fefefe;
+  /* 全体を#fefefeのボーダーで囲む */
+  overflow: hidden;
   font-size: 0.9em;
   line-height: 1;
 }
@@ -171,7 +231,8 @@ img {
 /* ホバー時、非アクティブ側はやや明るい黒(#333)か、少し明るめにするなら
    グレー掛かった黒に変えてもOKだが、ここでは薄いグレーで軽微な変化 */
 .lang-switch-toggle li a:not(.active):hover {
-  background: #333; /* 非アクティブホバー時、少し明るい黒に変更 */
+  background: #333;
+  /* 非アクティブホバー時、少し明るい黒に変更 */
 }
 
 /* 必要に応じて、左右のボーダー線調整 */
@@ -183,7 +244,8 @@ img {
 .has-sub {
   position: relative;
 }
-.has-sub > span {
+
+.has-sub>span {
   cursor: default;
 }
 
@@ -200,9 +262,11 @@ img {
   display: none;
   z-index: 1000000;
 }
+
 .sub-nav-list li {
   position: relative;
 }
+
 .sub-nav-list li a {
   display: inline-block;
   color: #fefefe;
@@ -223,11 +287,12 @@ img {
   bottom: 0;
   height: 2px;
   background: currentColor;
-  width: 100%; 
+  width: 100%;
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
 }
+
 .sub-nav-list li a:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
@@ -248,6 +313,7 @@ img {
   padding: 0.5em;
   z-index: 1000;
 }
+
 .header-hamburger span {
   display: block;
   width: 25px;
@@ -260,13 +326,13 @@ img {
 @media (max-width: 768px) {
   .global-header {
     position: relative;
-    z-index: 1000; 
+    z-index: 1000;
   }
 
   .header-hamburger {
     display: flex;
     padding: 0.5em;
-    z-index: 1001; 
+    z-index: 1001;
   }
 
   .header-nav {
@@ -276,7 +342,7 @@ img {
     left: 0;
     width: 100%;
     background: #1e1e1e;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 999;
   }
 
@@ -294,21 +360,21 @@ img {
 
   .nav-list li {
     width: 100%;
-    position: relative; 
+    position: relative;
   }
 
   .nav-list li a,
-  .has-sub > span {
+  .has-sub>span {
     display: block;
     padding: 0.8em 0;
     width: 100%;
     border-bottom: 1px solid var(--border-color);
-    position: relative; 
+    position: relative;
   }
 
   .nav-list li:last-child a,
-  .nav-list li:last-child .has-sub > span {
-    border-bottom: none; 
+  .nav-list li:last-child .has-sub>span {
+    border-bottom: none;
   }
 
   .sub-nav-list {
@@ -317,8 +383,8 @@ img {
     width: 100%;
     padding: 0 0 0 1em;
     margin: 0.5em 0;
-    background: #1e1e1e; 
-    box-shadow: none; 
+    background: #1e1e1e;
+    box-shadow: none;
   }
 
   .sub-nav-list.active {
@@ -327,7 +393,7 @@ img {
 
   .sub-nav-list li a {
     padding: 0.6em 0;
-    font-size: 0.95em; 
+    font-size: 0.95em;
   }
 
   .header-hamburger.active span:nth-child(1) {
@@ -354,7 +420,7 @@ img {
   }
 
   .nav-list li a::after,
-  .has-sub > span::after {
+  .has-sub>span::after {
     display: none;
   }
 }
@@ -363,57 +429,64 @@ img {
    パンくず
 ------------------------------------------------------------ */
 .breadcrumb-section {
-    position: relative;
-    z-index: 1; /* ヘッダーより小さな値に設定 */
-    background: #f8f8f8;
-    padding: 1em 0;
+  position: relative;
+  z-index: 1;
+  /* ヘッダーより小さな値に設定 */
+  background: #f8f8f8;
+  padding: 1em 0;
 }
+
 .breadcrumb-section .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1em; 
-    box-sizing: border-box;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
+  box-sizing: border-box;
 }
+
 .breadcrumb {
-    margin: 0;
-    padding: 0;
-    font-size: 0.9em;
-    color: #999;
-    text-align: left; 
-    line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+  color: #999;
+  text-align: left;
+  line-height: 1.5;
 }
 
 /* ------------------------------------------------------------
    ヒーローエリア（汎用）
 ------------------------------------------------------------ */
 .hero {
-    background: linear-gradient(to right, rgba(71,124,254,0.2), rgba(71,124,254,0.1));
-    text-align: center;
-    padding: 4em 1em;
+  background: linear-gradient(to right, rgba(71, 124, 254, 0.2), rgba(71, 124, 254, 0.1));
+  text-align: center;
+  padding: 4em 1em;
 }
+
 .hero h1 {
-    font-weight: 300;
-    font-size: 3.5rem;
-    color: var(--brand-color-subtitle);
-    margin-bottom: 0em;
+  font-weight: 300;
+  font-size: 3.5rem;
+  color: var(--brand-color-subtitle);
+  margin-bottom: 0em;
 }
+
 .hero p {
-    margin-bottom: 1em;
-    color: #555;
+  margin-bottom: 1em;
+  color: #555;
 }
+
 .hero a {
-    display: inline-block;
-    padding: 0.7em 1.2em;
-    background: var(--brand-color);
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+  display: inline-block;
+  padding: 0.7em 1.2em;
+  background: var(--brand-color);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background 0.3s ease;
 }
+
 .hero a:hover {
-    background: #00a68b;
+  background: #00a68b;
 }
 
 /* ------------------------------------------------------------
@@ -425,17 +498,20 @@ img {
   text-align: center;
   position: relative;
 }
+
 .hero-contact-content {
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
 }
+
 .hero-contact h1 {
   font-size: 2.5em;
   font-weight: bold;
   color: var(--brand-color);
   margin-bottom: 0.5em;
 }
+
 .hero-contact p {
   font-size: 1.1em;
   color: #555;
@@ -449,7 +525,8 @@ img {
 
 .hero-top {
   position: relative;
-  height: 350px; /* 固定高さ */
+  height: 350px;
+  /* 固定高さ */
   overflow: hidden;
   background: none;
   text-align: center;
@@ -475,56 +552,60 @@ img {
 .hero-top::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 2;
 }
 
 /* コンテンツ中央寄せ */
 .hero-top-content {
   position: relative;
-  z-index: 3; /* 動画・オーバーレイより前面 */
+  z-index: 3;
+  /* 動画・オーバーレイより前面 */
   max-width: 1080px;
   margin: 0 auto;
   /* 不要なmarginは削除し、flexレイアウトに依存 */
 }
 
 .hero-top-content h1 {
-    font-weight: 400;
-    margin: 0 0 0 0;
-    line-height: 1.0;
-    font-size: 8rem; /* 常に非常に大きなサイズ */
-    color: #fff;
+  font-weight: 400;
+  margin: 0 0 0 0;
+  line-height: 1.0;
+  font-size: 8rem;
+  /* 常に非常に大きなサイズ */
+  color: #fff;
 }
 
 .hero-top-content p {
-    margin: 0.5em 0 1.5em 0;
-    font-size: 1.5em;
-    line-height: 1.5em;
-    color: #fff;
+  margin: 0.5em 0 1.5em 0;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  color: #fff;
 }
 
 .hero-top-content a {
-    display: inline-block;
-    background: var(--brand-color, #2172AF);
-    color: #fff;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease;
+  display: inline-block;
+  background: var(--brand-color, #2172AF);
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .hero-top-content a:hover {
-    background: #00a68b;
+  background: #00a68b;
 }
 
 /* メディアクエリでフォントサイズ等微調整可能 */
 @media (max-width: 768px) {
   .hero-top-content h1 {
-    font-size: 6rem; /* 常に非常に大きなサイズ */
+    font-size: 6rem;
+    /* 常に非常に大きなサイズ */
   }
 }
 
@@ -535,212 +616,368 @@ img {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3em 0;
+  padding: 2.5em 0 5em 0;
 }
+
 .section h2 {
-    margin-bottom: 1em;
-    font-weight: 300;
-    font-size: 2.5rem;
-    color: #2FBB8C;
-    text-align: center;
+  margin-bottom: 1em;
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #111;
+  text-align: center;
+  letter-spacing: -0.02em;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.8);
 }
+
 .section p {
-  margin: 0 0 2em 0;
+  margin: 0 auto 2em auto;
   font-size: 1.25rem;
-  line-height: 2.0em;
-  text-align: left;
-  max-width: none;
+  line-height: 1.8em;
+  text-align: center;
+  max-width: 800px;
+  color: #333;
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.9),
+    1px -1px 0 rgba(255, 255, 255, 0.9),
+    -1px 1px 0 rgba(255, 255, 255, 0.9),
+    1px 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 255, 255, 1);
+}
+
+.value-catchphrase {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 2em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.value-highlight-text {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5em;
+  color: #2FBB8C;
+  display: block;
+  text-align: center;
+  letter-spacing: 0.08em;
+  position: relative;
+  text-shadow: 0 0 8px rgba(47, 187, 140, 0.3);
+}
+
+.value-highlight-text::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #2FBB8C;
+  border-radius: 2px;
+}
+
+.value-lead {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 1em;
+  text-align: center;
 }
 
 /* ------------------------------------------------------------
    ビジネス概要
 ------------------------------------------------------------ */
 .business-overview {
-    width: 90%;
-    max-width: 1200px;
-    margin: 1em auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5em 0 2.5em 0;
 }
+
 .section-title {
-    line-height: 1.2em;
-    margin-bottom: 0.5em;
-    text-align: center;
-    color: var(--brand-color);
+  line-height: 1.4em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.02em;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.8);
 }
+
 .section-title p {
-    margin: 0 0 2em 0;
-    text-align: left;
-    max-width: none;
+  margin: 0 auto 2em auto;
+  text-align: center;
+  max-width: 800px;
+  font-size: 1.25rem;
+  color: #333;
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.9),
+    1px -1px 0 rgba(255, 255, 255, 0.9),
+    -1px 1px 0 rgba(255, 255, 255, 0.9),
+    1px 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 255, 255, 1);
+}
+
+.highlight {
+  background: linear-gradient(90deg, #2FBB8C, #74CCA3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 1.1em;
+  display: inline-block;
+  padding: 0 4px;
+  position: relative;
+  text-shadow: none;
+}
+
+.section-title .highlight {
+  text-shadow: none;
+  filter: drop-shadow(0 0 6px rgba(47, 187, 140, 0.4));
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #2FBB8C;
+  border-radius: 2px;
 }
 
 .business-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  background: #fff;
 }
 
 .business-card {
-    position: relative;
-    flex: 1 1 calc(50% - 1em);
-    min-height: 350px;
-    background-size: cover;
-    background-position: center center;
-    overflow: hidden;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    color: #fff;
-    text-align: center;
+  position: relative;
+  flex: 1 1 calc(50% - 1px);
+  min-height: 350px;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 0;
+  border: none;
 }
 
 .business-card-gpu {
-    background-image: url('../images/gpuproducts.jpg');
+  background-image: url('../images/gpuproducts.webp');
 }
+
 .business-card-dc {
-    background-image: url('../images/datacenterconstruction.jpg');
+  background-image: url('../images/datacenterconstruction.webp');
 }
 
 .business-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.3);
-    z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+.business-card:hover::before {
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .business-card-overlay {
-    position: relative;
-    z-index: 2;
-    padding: 2em;
+  position: relative;
+  z-index: 2;
+  padding: 2em;
 }
+
 .business-card-overlay h3 {
-    font-size: 1.75em;
-    font-weight: 300;
-    margin-bottom: 0.5em;
-    font-weight: bold;
+  font-size: 1.75em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: color 0.4s ease, letter-spacing 0.4s ease;
 }
+
+.business-card:hover .business-card-overlay h3 {
+  color: #2FBB8C;
+  letter-spacing: 0.05em;
+}
+
 .business-card-overlay p {
-    margin-bottom: 1.5em;
-    font-size: 1.0em;
-    line-height: 1.5;
+  margin-bottom: 2.5em;
+  font-size: 1.1em;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
+
 .detail-link {
-    display: inline-block;
-    color: #fff;
-    background: var(--brand-color, #2172AF);
-    text-decoration: none;
-    padding: 0.5em 1em;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+  display: inline-block;
+  color: #fff;
+  background: var(--brand-color, #2172AF);
+  text-decoration: none;
+  padding: 0.8em 2em;
+  font-size: 1.15rem;
+  font-weight: bold;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
 .detail-link:hover {
-    background: #00a68b;
+  background: #fff;
+  color: #2FBB8C;
+  border-color: #2FBB8C;
+  transform: scale(1.05);
+  letter-spacing: 0.08em;
 }
 
 @media (max-width: 768px) {
-    .business-card {
-        flex: 1 1 100%;
-        min-height: 200px;
-    }
-    .business-card-overlay h3 {
-        font-size: 1.2em;
-    }
-    .business-card-overlay p {
-        font-size: 0.9em;
-    }
+  .business-card {
+    flex: 1 1 100%;
+    min-height: 200px;
+  }
+
+  .business-card-overlay h3 {
+    font-size: 1.2em;
+  }
+
+  .business-card-overlay p {
+    font-size: 0.9em;
+  }
 }
 
 /* ------------------------------------------------------------
    カード一覧レイアウト
 ------------------------------------------------------------ */
 .cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
-    margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 2em;
 }
+
 .card {
-    background: #fff;
-    border: 1px solid var(--border-color);
-    padding: 1.5em;
-    flex: 1 1 calc(33% - 2em);
-    box-sizing: border-box;
-    transition: box-shadow 0.2s ease;
-    text-align: center;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  padding: 1.5em;
+  flex: 1 1 calc(33% - 2em);
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease;
+  text-align: center;
 }
+
 .card h3 {
-    color: var(--text-color);
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
+  color: var(--text-color);
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
 }
+
 .card p {
-    color: #555;
-    font-size: 0.95em;
-    margin-bottom: 1em;
-    line-height: 2.0;
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 1em;
+  line-height: 2.0;
 }
+
 .card p.position {
-    color: var(--text-color);
-    font-size: 0.95em;
-    margin-bottom: 0;
-    line-height: 1.5;
-    text-align: center;
+  color: var(--text-color);
+  font-size: 0.95em;
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: center;
 }
+
 .card a {
-    color: var(--brand-color);
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: var(--brand-color);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
+
 .card a:hover {
-    color: #008f7b;
+  color: #008f7b;
 }
+
 .card:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
+
 @media (max-width: 992px) {
-    .card {
-        flex: 1 1 calc(50% - 2em);
-    }
+  .card {
+    flex: 1 1 calc(50% - 2em);
+  }
 }
+
 @media (max-width: 600px) {
-    .card {
-        flex: 1 1 100%;
-    }
+  .card {
+    flex: 1 1 100%;
+  }
 }
 
 /* ------------------------------------------------------------
    会社概要セクション
 ------------------------------------------------------------ */
 .hero-company {
-    background: none;
-    padding: 4em 0;
-    position: relative;
+  background: none;
+  padding: 4em 0;
+  position: relative;
 }
+
 .hero-company::before {
-    content: "";
-    position: absolute;
-    top:0; left:0; right:0; bottom:0;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
+
 .hero-company .container {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
 }
+
 .hero-title {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #111;
-    margin: 0;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #111;
+  margin: 0;
 }
 
 .company-overview-section {
-    background: none;
-    padding: 4em 0;
-    position: relative;
-    margin-bottom: 6em;
+  background: none;
+  padding: 4em 0;
+  position: relative;
+  margin-bottom: 6em;
 }
+
 .company-overview-box {
   max-width: 900px;
   margin: 0 auto;
@@ -751,64 +988,75 @@ img {
 }
 
 .company-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1em;
-    color: #333;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+  color: #333;
 }
+
 .company-table tr {
-    border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
 }
+
 .company-table tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
+
 .company-table th {
-    width: 30%;
-    font-weight: normal;
-    color: #666;
-    vertical-align: top;
-    text-align: left;
-    font-size: 0.9em;
-    line-height:1.6;
-    padding: 1em 0;
+  width: 30%;
+  font-weight: normal;
+  color: #666;
+  vertical-align: top;
+  text-align: left;
+  font-size: 0.9em;
+  line-height: 1.6;
+  padding: 1em 0;
 }
+
 .company-table td {
-    width: 70%;
-    color: #333;
-    vertical-align: top;
-    text-align: left;
-    padding: 1em 0;
-    line-height:1.8;
-    word-break: break-word;
+  width: 70%;
+  color: #333;
+  vertical-align: top;
+  text-align: left;
+  padding: 1em 0;
+  line-height: 1.8;
+  word-break: break-word;
 }
+
 .company-table a {
-    color: #2172AF;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: color 0.2s ease;
+  color: #2172AF;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s ease;
 }
+
 .company-table a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
+
 @media (max-width: 768px) {
-    .company-table th,
-    .company-table td {
-        display: block;
-        width:100%;
-        padding: 0.5em 0;
-    }
-    .company-table th {
-        font-size:0.85em;
-        padding:1em 0 0.2em 0;
-    }
-    .company-table td {
-        font-size:0.95em;
-        line-height:1.6;
-        padding-bottom:1em;
-    }
-    .company-table tr {
-        border-bottom: 1px solid #e6e6e6;
-    }
+
+  .company-table th,
+  .company-table td {
+    display: block;
+    width: 100%;
+    padding: 0.5em 0;
+  }
+
+  .company-table th {
+    font-size: 0.85em;
+    padding: 1em 0 0.2em 0;
+  }
+
+  .company-table td {
+    font-size: 0.95em;
+    line-height: 1.6;
+    padding-bottom: 1em;
+  }
+
+  .company-table tr {
+    border-bottom: 1px solid #e6e6e6;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -818,6 +1066,7 @@ img {
   padding: 4em 0;
   background: none;
 }
+
 .contact-form {
   max-width: 900px;
   margin: 0 auto;
@@ -826,40 +1075,46 @@ img {
   padding: 4em;
   box-sizing: border-box;
 }
+
 .form-group {
   display: flex;
   align-items: center;
   margin-bottom: 3em;
   flex-wrap: wrap;
 }
+
 .form-group-textarea {
   align-items: flex-start;
 }
+
 .form-group label {
   font-size: 0.9em;
   color: #333;
   font-weight: bold;
   flex: 0 0 180px;
-  margin:0; 
-  padding:0;
-  line-height:1.4;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
 }
+
 .form-group-textarea label,
 .form-group-textarea .form-input {
   align-self: flex-start;
-  margin:0;
-  padding:0;
-  line-height:1.4;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
   vertical-align: top;
 }
+
 .required {
   color: #e00;
   font-size: 0.9em;
   margin-left: 0.2em;
 }
+
 .form-input {
-  flex:1;
-  min-width:0;
+  flex: 1;
+  min-width: 0;
   font-size: 1em;
   color: #333;
   border: none;
@@ -868,33 +1123,42 @@ img {
   outline: none;
   transition: border-color 0.3s ease;
   line-height: 1.4;
-  margin:0; padding:0;
+  margin: 0;
+  padding: 0;
 }
+
 .form-input:focus {
   border-bottom-color: var(--brand-color);
 }
+
 textarea.form-input {
   resize: vertical;
-  width:100%;
-  margin:0; padding:0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
+
 .name-split {
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
 }
+
 .name-split .form-input {
-  flex:1;
-  min-width:0;
+  flex: 1;
+  min-width: 0;
 }
+
 .note {
   font-size: 0.85em;
   color: #555;
   margin: 1em 0;
 }
+
 .form-group-submit {
   justify-content: center;
 }
+
 .submit-button {
   display: inline-block;
   background: var(--brand-color);
@@ -907,26 +1171,31 @@ textarea.form-input {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+
 .submit-button:hover {
   background: #00a68b;
 }
+
 @media (max-width: 600px) {
   .form-group {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .form-group label {
-    flex:0 0 auto;
-    margin-bottom:0.5em;
+    flex: 0 0 auto;
+    margin-bottom: 0.5em;
   }
+
   .name-split {
     flex-direction: column;
-    gap:0.5em;
-    width:100%;
+    gap: 0.5em;
+    width: 100%;
   }
+
   .submit-button {
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -934,36 +1203,40 @@ textarea.form-input {
    フッター
 ------------------------------------------------------------ */
 footer {
-    background: var(--footer-bg);
-    padding: 2em 1em;
-    text-align: center; 
-    border-top: 1px solid var(--border-color);
+  background: var(--footer-bg);
+  padding: 2em 1em;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
 }
+
 footer a {
-    color: #1e1e1e;
-    text-decoration: none;
-    margin: 0 0.5em;
-    font-size: 0.9em;
+  color: #1e1e1e;
+  text-decoration: none;
+  margin: 0 0.5em;
+  font-size: 0.9em;
 }
+
 footer a:hover {
-    color: #6e6e6e;
+  color: #6e6e6e;
 }
+
 footer p {
-    color: #1e1e1e;
-    font-size: 0.9em;
-    margin: 1em 0 0 0;
+  color: #1e1e1e;
+  font-size: 0.9em;
+  margin: 1em 0 0 0;
 }
 
 /* ------------------------------------------------------------
    背景アニメーション用canvas
 ------------------------------------------------------------ */
 #networkCanvas {
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
-    pointer-events:none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* コンテンツを前面に表示 */
@@ -972,6 +1245,6 @@ footer p {
 .hero-company,
 .company-overview-section,
 .footer {
-    position: relative;
-    z-index: auto;
+  position: relative;
+  z-index: auto;
 }
