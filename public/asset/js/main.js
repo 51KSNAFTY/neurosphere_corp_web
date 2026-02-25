@@ -248,10 +248,10 @@ document.addEventListener('DOMContentLoaded', function () {
         scene.rotation.y += 0.001;
         scene.rotation.x += 0.0005;
 
-        targetX = mouseX * 0.03;
-        targetY = mouseY * 0.03;
-        camera.position.x += (targetX - camera.position.x) * 0.02;
-        camera.position.y += (-targetY - camera.position.y) * 0.02;
+        targetX = mouseX * 0.15;
+        targetY = mouseY * 0.15;
+        camera.position.x += (targetX - camera.position.x) * 0.05;
+        camera.position.y += (-targetY - camera.position.y) * 0.05;
         camera.lookAt(scene.position);
 
         renderer.render(scene, camera);
