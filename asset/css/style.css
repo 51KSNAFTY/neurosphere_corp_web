@@ -114,6 +114,7 @@ img {
    ヘッダー・グローバルナビゲーション
 ------------------------------------------------------------ */
 .global-header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 9999;
@@ -608,25 +609,25 @@ img {
   margin: 0;
   line-height: 1.0;
   font-size: 8rem;
-  /* Cinematic wipe from white to red-brown */
+  /* Cinematic wipe from white to red-brown (left to right) */
   background: linear-gradient(to right,
-      #ffffff 0%,
-      #ffffff 30%,
-      #ffd4cc 40%,
+      #E35345 0%,
+      #E35345 40%,
+      #8e1a0f 45%,
       #E35345 50%,
-      #8e1a0f 60%,
-      #E35345 70%,
-      #E35345 100%);
+      #ffd4cc 55%,
+      #ffffff 65%,
+      #ffffff 100%);
   background-size: 300% 100%;
-  background-position: 0% 50%;
+  background-position: 100% 50%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   opacity: 0;
   transform: translateY(30px);
   animation:
-    heroFadeUp 1s ease-out forwards,
-    liquidColorMerge 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.2s;
+    heroFadeUp 1.2s ease-out forwards,
+    liquidColorMerge 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.8s;
 }
 
 @keyframes heroFadeUp {
@@ -638,11 +639,11 @@ img {
 
 @keyframes liquidColorMerge {
   0% {
-    background-position: 0% 50%;
+    background-position: 100% 50%;
   }
 
   100% {
-    background-position: 100% 50%;
+    background-position: 0% 50%;
   }
 }
 
