@@ -604,6 +604,47 @@ img {
     0 0 8px rgba(255, 255, 255, 1);
 }
 
+.value-catchphrase {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 2em;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.value-highlight-text {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5em;
+  background: linear-gradient(90deg, #2FBB8C, #1a8f68);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: 0.08em;
+  position: relative;
+}
+
+.value-highlight-text::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #2FBB8C;
+  border-radius: 2px;
+}
+
+.value-lead {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 1em;
+}
+
 /* ------------------------------------------------------------
    ビジネス概要
 ------------------------------------------------------------ */
