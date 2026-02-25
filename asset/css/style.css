@@ -933,9 +933,11 @@ img {
 
 .card p {
   color: #555;
-  font-size: 0.95em;
+  font-size: 0.85em;
+  /* Adjusted to fit the long text into 2 lines on PC */
+  letter-spacing: -0.02em;
   margin-bottom: 1em;
-  line-height: 2.0;
+  line-height: 1.8;
 }
 
 .card p.position {
