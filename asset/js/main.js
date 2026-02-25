@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // ハンバーガーメニュー処理
   const hamburger = document.querySelector('.header-hamburger');
   const nav = document.querySelector('.header-nav');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // サブメニューの開閉（モバイル時）
   hasSubMenus.forEach(submenu => {
-    submenu.addEventListener('click', function(e) {
+    submenu.addEventListener('click', function (e) {
       if (window.innerWidth <= 768) {
         e.preventDefault();
         e.stopPropagation();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ウィンドウリサイズ時の処理
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', function () {
     if (window.innerWidth > 768) {
       hamburger.classList.remove('active');
       nav.classList.remove('active');
@@ -32,6 +32,59 @@ document.addEventListener('DOMContentLoaded', function() {
         subNav.classList.remove('active');
       });
     }
+  });
+
+  // ──────────────────────────────────────────────
+  // SVG ボーダートレースアニメーション（カードホバー）
+  // ──────────────────────────────────────────────
+  document.querySelectorAll('.business-card').forEach(card => {
+    // SVG要素を生成してカード上に配置
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'card-border-svg');
+    svg.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;';
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', '1');
+    rect.setAttribute('y', '1');
+    rect.setAttribute('rx', '0');
+    rect.setAttribute('ry', '0');
+    rect.setAttribute('fill', 'none');
+    rect.setAttribute('stroke', '#2FBB8C');
+    rect.setAttribute('stroke-width', '2');
+    svg.appendChild(rect);
+    card.style.position = 'relative';
+    card.appendChild(svg);
+
+    // サイズを合わせてパスの長さを計算
+    function updateRect() {
+      const w = card.offsetWidth;
+      const h = card.offsetHeight;
+      rect.setAttribute('width', w - 2);
+      rect.setAttribute('height', h - 2);
+      const perimeter = 2 * (w - 2) + 2 * (h - 2);
+      rect.style.strokeDasharray = perimeter;
+      rect.style.strokeDashoffset = perimeter;
+      rect.style.transition = 'none';
+    }
+    updateRect();
+    window.addEventListener('resize', updateRect);
+
+    // ホバーでラインを描画
+    card.addEventListener('mouseenter', () => {
+      const w = card.offsetWidth;
+      const h = card.offsetHeight;
+      const perimeter = 2 * (w - 2) + 2 * (h - 2);
+      rect.style.transition = 'stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      rect.style.strokeDashoffset = '0';
+    });
+
+    // マウスアウトでラインを戻す
+    card.addEventListener('mouseleave', () => {
+      const w = card.offsetWidth;
+      const h = card.offsetHeight;
+      const perimeter = 2 * (w - 2) + 2 * (h - 2);
+      rect.style.transition = 'stroke-dashoffset 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+      rect.style.strokeDashoffset = perimeter;
+    });
   });
 
   // ネットワークアニメーション処理 (Three.js)
@@ -103,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const linePositions = new Float32Array(maxLines * 6);
       const lineGeometry = new THREE.BufferGeometry();
       lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-      
+
       const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
       scene.add(linesMesh);
 
@@ -138,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
           velocities[i].y += (Math.random() - 0.5) * 0.01;
           velocities[i].z += (Math.random() - 0.5) * 0.01;
 
-          const speed = Math.sqrt(velocities[i].x**2 + velocities[i].y**2 + velocities[i].z**2);
+          const speed = Math.sqrt(velocities[i].x ** 2 + velocities[i].y ** 2 + velocities[i].z ** 2);
           if (speed > 0.4) {
             velocities[i].x *= 0.4 / speed;
             velocities[i].y *= 0.4 / speed;
@@ -183,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
           linePositions[i * 3 + 2] = 0;
         }
         lineGeometry.attributes.position.needsUpdate = true;
-        
+
         scene.rotation.y += 0.001;
         scene.rotation.x += 0.0005;
 
