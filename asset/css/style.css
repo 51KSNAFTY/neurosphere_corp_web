@@ -744,7 +744,11 @@ img {
   padding: 0 4px;
   position: relative;
   text-shadow: none;
-  /* override inherited text-shadow so the transparent text fill isn't masked by white shadows */
+}
+
+.section-title .highlight {
+  text-shadow: none;
+  filter: drop-shadow(0 0 6px rgba(47, 187, 140, 0.4));
 }
 
 .highlight::after {
