@@ -13,6 +13,13 @@
 </head>
 
 <body>
+  <!-- 画面ロード時のローディングアニメーション -->
+  <div id="global-loader">
+    <div class="loader-content">
+      <img src="./asset/images/Neurosphere_Logo_Rectangle.webp" alt="Neurosphere Loading" class="loader-logo">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
 
   <canvas id="networkCanvas"></canvas>
 
@@ -54,7 +61,7 @@
   </header>
 
   <section class="hero hero-top">
-    <video autoplay muted loop playsinline class="hero-video">
+    <video autoplay muted loop playsinline class="hero-video" poster="./asset/images/datacenter_hero.webp">
       <source src="./asset/videos/top-hero.mp4" type="video/mp4">
     </video>
 
@@ -174,7 +181,8 @@
       </div>
       <div class="card">
         <h3 data-i18n="approach_4_title">4. 運用改善</h3>
-        <p data-i18n="approach_4_body">定着支援・モニタリング・改善サイクル</p>
+        <p data-i18n="approach_4_body">業務の自動化・モニタリング・改善サイクル<br><br>個別最適化が必要なケースは、AI
+          AGENTを弊社にてBPO運用し成果物を保証。<br>最適化と簡略化が完了した時点で現場への導入を行います。</p>
       </div>
     </div>
 
@@ -308,7 +316,7 @@
           approach_3_title: "3. 実装",
           approach_3_body: "ワークフロー/モデル選定・統合/AI AGENT開発",
           approach_4_title: "4. 運用改善",
-          approach_4_body: "定着支援・モニタリング・改善サイクル",
+          approach_4_body: "業務の自動化・モニタリング・改善サイクル<br><br>個別最適化が必要なケースは、AI AGENTを弊社にてBPO運用し成果物を保証。<br>最適化と簡略化が完了した時点で現場への導入を行います。",
           approach_cta: "まずは無料相談",
 
           domains_title: "対象領域",

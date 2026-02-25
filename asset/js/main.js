@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // ローディングアニメーション制御
+  const loader = document.getElementById('global-loader');
+  if (loader) {
+    // ページロード完了時に非表示
+    const hideLoader = () => {
+      loader.classList.add('hidden');
+    };
+    window.addEventListener('load', hideLoader);
+    // 念のため5秒経過したら強制非表示
+    setTimeout(hideLoader, 5000);
+  }
   // ハンバーガーメニュー処理
   const hamburger = document.querySelector('.header-hamburger');
   const nav = document.querySelector('.header-nav');
