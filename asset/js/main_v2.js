@@ -165,9 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
         positions[i * 3 + 2] = (Math.random() - 0.5) * 500;
 
         velocities.push({
-          x: (Math.random() - 0.5) * 0.3,
-          y: (Math.random() - 0.5) * 0.3,
-          z: (Math.random() - 0.5) * 0.3
+          x: (Math.random() - 0.5) * 0.005,
+          y: (Math.random() - 0.5) * 0.005,
+          z: (Math.random() - 0.5) * 0.005
         });
       }
 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
       particleCanvas.height = 32;
       const context = particleCanvas.getContext('2d');
       const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
-      gradient.addColorStop(0, 'rgba(47,187,140,0.8)'); // #2FBB8C
+      gradient.addColorStop(0, 'rgba(47,187,140,0.15)'); // #2FBB8C
       gradient.addColorStop(1, 'rgba(47,187,140,0)');
       context.fillStyle = gradient;
       context.beginPath();
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         color: 0x2FBB8C,
         size: 10,
         transparent: true,
-        opacity: 0.9,
+        opacity: 0.15,
         map: particleTexture,
         depthWrite: false
       });
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const lineMaterial = new THREE.LineBasicMaterial({
         color: 0x2FBB8C,
         transparent: true,
-        opacity: 0.25,
+        opacity: 0.05,
       });
 
       const maxLines = 6000;
@@ -240,15 +240,15 @@ document.addEventListener('DOMContentLoaded', function () {
         let lineVertexIndex = 0;
 
         for (let i = 0; i < particleCount; i++) {
-          velocities[i].x += (Math.random() - 0.5) * 0.01;
-          velocities[i].y += (Math.random() - 0.5) * 0.01;
-          velocities[i].z += (Math.random() - 0.5) * 0.01;
+          velocities[i].x += (Math.random() - 0.5) * 0.0001;
+          velocities[i].y += (Math.random() - 0.5) * 0.0001;
+          velocities[i].z += (Math.random() - 0.5) * 0.0001;
 
           const speed = Math.sqrt(velocities[i].x ** 2 + velocities[i].y ** 2 + velocities[i].z ** 2);
-          if (speed > 0.4) {
-            velocities[i].x *= 0.4 / speed;
-            velocities[i].y *= 0.4 / speed;
-            velocities[i].z *= 0.4 / speed;
+          if (speed > 0.01) {
+            velocities[i].x *= 0.01 / speed;
+            velocities[i].y *= 0.01 / speed;
+            velocities[i].z *= 0.01 / speed;
           }
 
           let x = posAttribute.getX(i) + velocities[i].x;
@@ -290,13 +290,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         lineGeometry.attributes.position.needsUpdate = true;
 
-        scene.rotation.y += 0.001;
-        scene.rotation.x += 0.0005;
+        scene.rotation.y += 0.00005;
+        scene.rotation.x += 0.000025;
 
-        targetX = mouseX * 0.15;
-        targetY = mouseY * 0.15;
-        camera.position.x += (targetX - camera.position.x) * 0.05;
-        camera.position.y += (-targetY - camera.position.y) * 0.05;
+        targetX = mouseX * 0.02;
+        targetY = mouseY * 0.02;
+        camera.position.x += (targetX - camera.position.x) * 0.01;
+        camera.position.y += (-targetY - camera.position.y) * 0.01;
         camera.lookAt(scene.position);
 
         renderer.render(scene, camera);
