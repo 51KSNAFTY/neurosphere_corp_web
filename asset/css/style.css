@@ -829,10 +829,15 @@ img {
 }
 
 @media (max-width: 768px) {
+  .section.business-overview {
+    padding-top: 1.5em; /* Overrides `.section`'s default 2.5em and reduces mobile gap */
+  }
+
   .business-overview p {
     text-align: left;
   }
 }
+
 
 
 .section-title {
