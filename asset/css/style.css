@@ -583,7 +583,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-top {
-    height: 250px; /* Reduced fixed height on mobile to minimize bottom padding */
+    height: 180px; /* Reduced fixed height on mobile to minimize bottom padding */
   }
 }
 
@@ -829,8 +829,8 @@ img {
   /* Top padding matched to .section-title's margin-bottom (1.5em) */
 }
 
-.business-overview p {
-  line-height: 1.5em;
+.business-overview > p {
+  line-height: 1.5em !important;
   /* Narrower line-height as requested */
 }
 
@@ -839,8 +839,8 @@ img {
     padding-top: 1.5em; /* Overrides `.section`'s default 2.5em and reduces mobile gap */
   }
 
-  .business-overview p {
-    text-align: left;
+  .business-overview > p {
+    text-align: left !important;
   }
 }
 
