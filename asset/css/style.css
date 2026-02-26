@@ -1378,11 +1378,16 @@ footer p {
   }
 
   /* セクションタイトルのフォントサイズを縮小して1行に収める、ギリギリまで大きく */
-  .section h2,
-  .section-title {
+  .section h2 {
     font-size: clamp(1.6rem, 8.5vw, 2.5rem) !important;
     word-break: keep-all;
     line-height: 1.8em;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 10.8vw, 3.2rem) !important;
+    word-break: keep-all;
+    line-height: 1.6em;
   }
 
   /* 言語切り替えボタンの崩れを修正 */
