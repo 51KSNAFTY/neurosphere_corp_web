@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', function () {
       loader.classList.add('hidden');
     }, 600);
   }
+  // ヒーロー動画のフェードイン制御（Three.jsと共にシームレスに見せる）
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    const fadeInVideo = () => {
+      // THE AI MERGE の文字が現れるタイミングに合わせてゆっくり動画を表示
+      setTimeout(() => {
+        heroVideo.classList.add('is-loaded');
+      }, 300); // 300ms待ってからフェードイン開始
+    };
+
+    if (heroVideo.readyState >= 3) {
+      fadeInVideo();
+    } else {
+      heroVideo.addEventListener('canplay', fadeInVideo);
+    }
+  }
+
   // ハンバーガーメニュー処理
   const hamburger = document.querySelector('.header-hamburger');
   const nav = document.querySelector('.header-nav');
