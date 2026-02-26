@@ -583,7 +583,8 @@ img {
 
 @media (max-width: 768px) {
   .hero-top {
-    height: 180px; /* Reduced fixed height on mobile to minimize bottom padding */
+    height: 180px;
+    /* Reduced fixed height on mobile to minimize bottom padding */
   }
 }
 
@@ -829,17 +830,18 @@ img {
   /* Top padding matched to .section-title's margin-bottom (1.5em) */
 }
 
-.business-overview > p {
+.business-overview>p {
   line-height: 1.5em !important;
   /* Narrower line-height as requested */
 }
 
 @media (max-width: 768px) {
   .section.business-overview {
-    padding-top: 1.5em; /* Overrides `.section`'s default 2.5em and reduces mobile gap */
+    padding-top: 1.5em;
+    /* Overrides `.section`'s default 2.5em and reduces mobile gap */
   }
 
-  .business-overview > p {
+  .business-overview>p {
     text-align: left !important;
   }
 }
