@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
       particleCanvas.height = 32;
       const context = particleCanvas.getContext('2d');
       const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
-      gradient.addColorStop(0, 'rgba(47,187,140,0.15)'); // #2FBB8C
+      gradient.addColorStop(0, 'rgba(47,187,140,0.5)'); // #2FBB8C
       gradient.addColorStop(1, 'rgba(47,187,140,0)');
       context.fillStyle = gradient;
       context.beginPath();
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         color: 0x2FBB8C,
         size: 10,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.6,
         map: particleTexture,
         depthWrite: false
       });
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const lineMaterial = new THREE.LineBasicMaterial({
         color: 0x2FBB8C,
         transparent: true,
-        opacity: 0.05,
+        opacity: 0.15,
       });
 
       const maxLines = 6000;
