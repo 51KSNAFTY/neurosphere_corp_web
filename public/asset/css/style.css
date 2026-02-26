@@ -406,8 +406,17 @@ img {
     position: relative;
   }
 
+  .nav-list li.nav-disabled {
+    align-items: flex-start;
+    padding: 0.8em 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+
   .nav-list li:last-child a,
-  .nav-list li:last-child .has-sub>span {
+  .nav-list li:last-child .has-sub>span,
+  .nav-list li:last-child.nav-disabled {
     border-bottom: none;
   }
 
@@ -1378,11 +1387,16 @@ footer p {
   }
 
   /* セクションタイトルのフォントサイズを縮小して1行に収める、ギリギリまで大きく */
-  .section h2,
-  .section-title {
+  .section h2 {
     font-size: clamp(1.6rem, 8.5vw, 2.5rem) !important;
     word-break: keep-all;
     line-height: 1.8em;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 10.8vw, 3.2rem) !important;
+    word-break: keep-all;
+    line-height: 1.6em;
   }
 
   /* 言語切り替えボタンの崩れを修正 */

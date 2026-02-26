@@ -406,8 +406,17 @@ img {
     position: relative;
   }
 
+  .nav-list li.nav-disabled {
+    align-items: flex-start;
+    padding: 0.8em 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+
   .nav-list li:last-child a,
-  .nav-list li:last-child .has-sub>span {
+  .nav-list li:last-child .has-sub>span,
+  .nav-list li:last-child.nav-disabled {
     border-bottom: none;
   }
 
