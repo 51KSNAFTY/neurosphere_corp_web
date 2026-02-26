@@ -828,6 +828,13 @@ img {
   /* Narrower line-height as requested */
 }
 
+@media (max-width: 768px) {
+  .business-overview p {
+    text-align: left;
+  }
+}
+
+
 .section-title {
   line-height: 1.4em;
   margin-bottom: 1.5em;
