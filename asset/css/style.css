@@ -581,6 +581,12 @@ img {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .hero-top {
+    height: 250px; /* Reduced fixed height on mobile to minimize bottom padding */
+  }
+}
+
 .hero-top video {
   position: absolute;
   top: 0;
