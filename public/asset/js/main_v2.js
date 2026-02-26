@@ -165,9 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
         positions[i * 3 + 2] = (Math.random() - 0.5) * 500;
 
         velocities.push({
-          x: (Math.random() - 0.5) * 0.005,
-          y: (Math.random() - 0.5) * 0.005,
-          z: (Math.random() - 0.5) * 0.005
+          x: (Math.random() - 0.5) * 0.1,
+          y: (Math.random() - 0.5) * 0.1,
+          z: (Math.random() - 0.5) * 0.1
         });
       }
 
@@ -240,15 +240,15 @@ document.addEventListener('DOMContentLoaded', function () {
         let lineVertexIndex = 0;
 
         for (let i = 0; i < particleCount; i++) {
-          velocities[i].x += (Math.random() - 0.5) * 0.0001;
-          velocities[i].y += (Math.random() - 0.5) * 0.0001;
-          velocities[i].z += (Math.random() - 0.5) * 0.0001;
+          velocities[i].x += (Math.random() - 0.5) * 0.003;
+          velocities[i].y += (Math.random() - 0.5) * 0.003;
+          velocities[i].z += (Math.random() - 0.5) * 0.003;
 
           const speed = Math.sqrt(velocities[i].x ** 2 + velocities[i].y ** 2 + velocities[i].z ** 2);
-          if (speed > 0.01) {
-            velocities[i].x *= 0.01 / speed;
-            velocities[i].y *= 0.01 / speed;
-            velocities[i].z *= 0.01 / speed;
+          if (speed > 0.2) {
+            velocities[i].x *= 0.2 / speed;
+            velocities[i].y *= 0.2 / speed;
+            velocities[i].z *= 0.2 / speed;
           }
 
           let x = posAttribute.getX(i) + velocities[i].x;
@@ -290,13 +290,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         lineGeometry.attributes.position.needsUpdate = true;
 
-        scene.rotation.y += 0.00005;
-        scene.rotation.x += 0.000025;
+        scene.rotation.y += 0.0005;
+        scene.rotation.x += 0.0002;
 
-        targetX = mouseX * 0.02;
-        targetY = mouseY * 0.02;
-        camera.position.x += (targetX - camera.position.x) * 0.01;
-        camera.position.y += (-targetY - camera.position.y) * 0.01;
+        targetX = mouseX * 0.2;
+        targetY = mouseY * 0.2;
+        camera.position.x += (targetX - camera.position.x) * 0.08;
+        camera.position.y += (-targetY - camera.position.y) * 0.08;
         camera.lookAt(scene.position);
 
         renderer.render(scene, camera);
