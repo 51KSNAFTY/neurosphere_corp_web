@@ -25,18 +25,22 @@
 
       <nav class="header-nav">
         <ul class="nav-list">
-          <!--
           <li class="has-sub">
-            <span>提供事業</span>
+            <span data-i18n="nav_products">PRODUCTS</span>
             <ul class="sub-nav-list">
-              <li><a href="./services/gpu-servers.html">最新GPUサーバー調達・販売</a></li>
-              <li><a href="./services/dc-development.html">特化型データセンター開発</a></li>
+              <li><a href="index.html#services" data-i18n="nav_ai_bpo">AI BPO / 業務自動化</a></li>
+              <li><a href="index.html#services" data-i18n="nav_ai_product">AIエージェント開発</a></li>
+              <li><a href="index.html#services" data-i18n="nav_ai_dx">AI従業員の最適化と導入</a></li>
             </ul>
           </li>
-          <li><a href="./agency.html">パートナープログラム</a></li>
-          <li><a href="./company.html">デジタルダイナミックについて</a></li>
-          -->
-          <li><a href="./contact.html">お問い合わせ</a></li>
+
+          <li><a href="index.html#updates" data-i18n="nav_updates">UPDATES</a></li>
+          <li class="nav-disabled">
+            <span class="disabled-text" data-i18n="nav_blog">BLOG</span>
+            <span class="coming-soon">COMING SOON</span>
+          </li>
+          <li><a href="./contact.html" data-i18n="nav_careers">CARRERS</a></li>
+          <li><a href="./contact.html" data-i18n="nav_contact" class="active">CONTACT</a></li>
         </ul>
       </nav>
     </div>
@@ -121,8 +125,12 @@
 
   <footer class="footer">
     <div class="container">
-      <p><a href="company.html">会社情報</a> | <a href="#">プライバシーポリシー</a> | <a href="#">サイトマップ</a></p>
-      <p>© 2024 Digital Dynamic Inc. All Rights Reserved.</p>
+      <p>
+        <a href="company.html" data-i18n="footer_company">会社情報</a> |
+        <a href="./contact.html" data-i18n="footer_privacy">プライバシーポリシー</a> |
+        <a href="index.html#services" data-i18n="footer_sitemap">サイトマップ</a>
+      </p>
+      <p data-i18n="footer_copyright">© 2026 Neurosphere Inc. All Rights Reserved.</p>
     </div>
   </footer>
 
