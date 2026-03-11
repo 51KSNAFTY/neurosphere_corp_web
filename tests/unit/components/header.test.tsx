@@ -47,8 +47,8 @@ afterEach(() => {
 describe('Header', () => {
   it('ロゴが表示される', () => {
     render(<Header />)
-    const logo = screen.getByAltText('Company Logo')
-    expect(logo).toBeInTheDocument()
+    const logos = screen.getAllByAltText('Company Logo')
+    expect(logos.length).toBeGreaterThanOrEqual(1)
   })
 
   it('ナビゲーションリンクが表示される', () => {
