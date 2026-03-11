@@ -741,7 +741,11 @@ export default function AistudioPage() {
       <Footer />
 
       {/* STICKY CTA */}
-      <div className={`sticky-cta${sticky.visible ? 'is-visible' : ''}`}>
+      <div
+        className={['sticky-cta', sticky.visible && 'is-visible']
+          .filter(Boolean)
+          .join(' ')}
+      >
         <a href="#cta">まずは無料で相談する →</a>
       </div>
     </div>
