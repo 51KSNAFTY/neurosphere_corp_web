@@ -11,7 +11,7 @@ export function createMetadata(overrides: Partial<Metadata> = {}): Metadata {
     description:
       'NeurosphereはAI BPO、AIプロダクト開発、AIによるDXを通じて、業務を再設計し成果を生み出すAI実装パートナーです。',
     robots: { index: true, follow: true },
-    icons: { icon: '/icon.svg' },
+    icons: { icon: '/favicon.ico', apple: '/apple-icon.png' },
     openGraph: {
       type: 'website',
       locale: 'ja_JP',

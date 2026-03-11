@@ -32,7 +32,8 @@ describe('createMetadata', () => {
 
   it('faviconパスが正しい', () => {
     const metadata = createMetadata()
-    const icons = metadata.icons as { icon: string }
-    expect(icons.icon).toBe('/icon.svg')
+    const icons = metadata.icons as { icon: string; apple: string }
+    expect(icons.icon).toBe('/favicon.ico')
+    expect(icons.apple).toBe('/apple-icon.png')
   })
 })

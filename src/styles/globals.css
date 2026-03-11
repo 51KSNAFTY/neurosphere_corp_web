@@ -144,16 +144,27 @@ img {
 }
 
 /* ロゴ */
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
 .header-logo .logo-full {
-  height: 45px;
+  height: 40px;
+  width: auto;
+  max-width: 100%;
   display: block;
+  object-fit: contain;
 }
 
 .header-logo .logo-icon {
   display: none;
-  height: 36px;
-  width: 36px;
-  border-radius: 8px;
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 /* LP用ヘッダーCTAボタン */
@@ -1758,6 +1769,11 @@ footer {
    モバイル追加調整
 ------------------------------------------------------------ */
 @media (max-width: 768px) {
+  /* ロゴ縮小 */
+  .header-logo .logo-full {
+    height: 32px;
+  }
+
   /* メインビジュアルをファーストビューで全画面 */
   .hero-top {
     height: 100svh;
@@ -1795,7 +1811,7 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   /* ロゴ：狭い画面ではアイコンロゴに切り替え */
   .header-logo .logo-full {
     display: none;

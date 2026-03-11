@@ -308,19 +308,6 @@ export default function AistudioPage() {
               サービスを見る ↓
             </a>
           </div>
-          <div className="scroll-hint">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="rgba(255,255,255,0.7)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </div>
         </div>
       </section>
 
@@ -335,39 +322,43 @@ export default function AistudioPage() {
             実写からアニメーションまで、目的・ターゲットに最適化した動画を制作しています。
           </p>
         </div>
-        <div className="showcase-marquee">
-          {[0, 1].map((setIndex) => (
-            <div
-              key={setIndex}
-              className="showcase-track"
-              aria-hidden={setIndex === 1 || undefined}
-            >
-              {/* 2周分のカードでビューポートより常に幅広くする */}
-              {[...showcaseCards, ...showcaseCards].map((card, i) => (
-                <div
-                  key={i}
-                  className={`showcase-card ${card.orientation}`}
-                  onClick={() => videoModal.open(card.video)}
-                  role="button"
-                  tabIndex={setIndex === 0 && i < showcaseCards.length ? 0 : -1}
-                  aria-label={`${card.title}を再生`}
-                >
-                  <Image
-                    className="showcase-thumb"
-                    src={card.src}
-                    alt={card.alt}
-                    fill
-                    sizes="180px"
-                  />
-                  <div className="showcase-play"></div>
-                  <div className="showcase-label">
-                    <span className="label-tag">{card.tag}</span>
-                    <div className="label-title">{card.title}</div>
-                  </div>
+        <div
+          className="showcase-wrapper js-reveal"
+          style={{ transitionDelay: '0.1s' }}
+        >
+          <div className="showcase-track">
+            {/* カード6倍で無限スクロール（translateX(-50%)でシームレスループ） */}
+            {[
+              ...showcaseCards,
+              ...showcaseCards,
+              ...showcaseCards,
+              ...showcaseCards,
+              ...showcaseCards,
+              ...showcaseCards,
+            ].map((card, i) => (
+              <div
+                key={i}
+                className={`showcase-card ${card.orientation}`}
+                onClick={() => videoModal.open(card.video)}
+                role="button"
+                tabIndex={i < showcaseCards.length ? 0 : -1}
+                aria-label={`${card.title}を再生`}
+              >
+                <Image
+                  className="showcase-thumb"
+                  src={card.src}
+                  alt={card.alt}
+                  fill
+                  sizes="180px"
+                />
+                <div className="showcase-play"></div>
+                <div className="showcase-label">
+                  <span className="label-tag">{card.tag}</span>
+                  <div className="label-title">{card.title}</div>
                 </div>
-              ))}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -57,7 +57,7 @@ export function Header({ lpCta }: HeaderProps = {}) {
             className="logo-full"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon.svg" alt="Company Logo" className="logo-icon" />
+          <img src="/icon-light.png" alt="Company Logo" className="logo-icon" />
         </Link>
 
         {lpCta ? (
