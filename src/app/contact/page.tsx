@@ -29,7 +29,11 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <ContactForm />
+      <section className="section contact-section">
+        <div className="container">
+          <ContactForm />
+        </div>
+      </section>
 
       <Footer />
     </>

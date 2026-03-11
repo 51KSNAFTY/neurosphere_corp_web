@@ -9,13 +9,25 @@ export function Footer() {
 
   return (
     <footer className="footer">
-      <div className="container">
-        <p>
-          <Link href="/company">{t('footer_company')}</Link> |{' '}
-          <Link href="/contact">{t('footer_privacy')}</Link> |{' '}
-          <Link href="/#services">{t('footer_sitemap')}</Link>
-        </p>
-        <p>{t('footer_copyright')}</p>
+      <div className="footer-inner">
+        <div className="footer-top">
+          <div className="footer-logo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/Neurosphere_Logo_Horizontal.png"
+              alt="Neurosphere"
+              className="footer-logo-img"
+            />
+          </div>
+          <nav className="footer-nav">
+            <Link href="/company">{t('footer_company')}</Link>
+            <Link href="/contact">{t('footer_contact')}</Link>
+            <Link href="/privacy">{t('footer_privacy')}</Link>
+          </nav>
+        </div>
+        <div className="footer-bottom">
+          <p className="footer-copyright">{t('footer_copyright')}</p>
+        </div>
       </div>
     </footer>
   )

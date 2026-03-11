@@ -94,8 +94,8 @@ export const ja = {
 
   // Footer
   footer_company: '会社情報',
+  footer_contact: 'お問い合わせ',
   footer_privacy: 'プライバシーポリシー',
-  footer_sitemap: 'サイトマップ',
   footer_copyright: '© 2026 Neurosphere Inc. All Rights Reserved.',
 } as const
 

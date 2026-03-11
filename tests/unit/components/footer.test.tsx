@@ -18,8 +18,8 @@ vi.mock('@/lib/i18n', () => ({
     t: (key: string) => {
       const dict: Record<string, string> = {
         footer_company: '会社情報',
+        footer_contact: 'お問い合わせ',
         footer_privacy: 'プライバシーポリシー',
-        footer_sitemap: 'サイトマップ',
         footer_copyright: '© 2026 Neurosphere Inc. All Rights Reserved.',
       }
       return dict[key] ?? key
@@ -35,8 +35,8 @@ describe('Footer', () => {
   it('フッターリンクが表示される', () => {
     render(<Footer />)
     expect(screen.getByText('会社情報')).toBeInTheDocument()
+    expect(screen.getByText('お問い合わせ')).toBeInTheDocument()
     expect(screen.getByText('プライバシーポリシー')).toBeInTheDocument()
-    expect(screen.getByText('サイトマップ')).toBeInTheDocument()
   })
 
   it('コピーライトが表示される', () => {
@@ -54,7 +54,13 @@ describe('Footer', () => {
 
   it('お問い合わせリンクが正しいhrefを持つ', () => {
     render(<Footer />)
-    const link = screen.getByText('プライバシーポリシー')
+    const link = screen.getByText('お問い合わせ')
     expect(link.closest('a')).toHaveAttribute('href', '/contact')
+  })
+
+  it('プライバシーポリシーリンクが正しいhrefを持つ', () => {
+    render(<Footer />)
+    const link = screen.getByText('プライバシーポリシー')
+    expect(link.closest('a')).toHaveAttribute('href', '/privacy')
   })
 })

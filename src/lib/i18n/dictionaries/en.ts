@@ -103,7 +103,7 @@ export const en: Record<DictionaryKey, string> = {
 
   // Footer
   footer_company: 'Company Info',
+  footer_contact: 'Contact',
   footer_privacy: 'Privacy Policy',
-  footer_sitemap: 'Sitemap',
   footer_copyright: '© 2026 Neurosphere Inc. All Rights Reserved.',
 }

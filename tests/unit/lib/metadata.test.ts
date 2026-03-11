@@ -33,6 +33,6 @@ describe('createMetadata', () => {
   it('faviconパスが正しい', () => {
     const metadata = createMetadata()
     const icons = metadata.icons as { icon: string }
-    expect(icons.icon).toBe('/images/Neurosphere_Logo_Rectangle.webp')
+    expect(icons.icon).toBe('/icon.svg')
   })
 })

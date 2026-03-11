@@ -49,8 +49,8 @@ describe('i18n辞書', () => {
   it('フッターキーがすべて存在する', () => {
     const footerKeys: DictionaryKey[] = [
       'footer_company',
+      'footer_contact',
       'footer_privacy',
-      'footer_sitemap',
       'footer_copyright',
     ]
     footerKeys.forEach((key) => {
