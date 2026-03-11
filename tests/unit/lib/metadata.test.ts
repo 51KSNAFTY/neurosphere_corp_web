@@ -9,6 +9,17 @@ describe('createMetadata', () => {
     expect(metadata.icons).toBeDefined()
   })
 
+  it('metadataBaseが設定されている', () => {
+    const metadata = createMetadata()
+    expect(metadata.metadataBase).toBeDefined()
+    expect(metadata.metadataBase?.toString()).toBe('https://neurosphere.co.jp/')
+  })
+
+  it('canonical URLが設定されている', () => {
+    const metadata = createMetadata()
+    expect(metadata.alternates?.canonical).toBe('/')
+  })
+
   it('OGPが設定されている', () => {
     const metadata = createMetadata()
     expect(metadata.openGraph).toBeDefined()
@@ -16,11 +27,18 @@ describe('createMetadata', () => {
     expect(metadata.openGraph?.locale).toBe('ja_JP')
   })
 
+  it('OG画像が設定されている', () => {
+    const metadata = createMetadata()
+    const og = metadata.openGraph as Record<string, unknown>
+    expect(og.images).toBeDefined()
+  })
+
   it('Twitterカードが設定されている', () => {
     const metadata = createMetadata()
     expect(metadata.twitter).toBeDefined()
     const twitter = metadata.twitter as Record<string, unknown>
     expect(twitter.card).toBe('summary_large_image')
+    expect(twitter.images).toBeDefined()
   })
 
   it('オーバーライドが適用される', () => {

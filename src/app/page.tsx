@@ -14,12 +14,14 @@ export default function HomePage() {
     <>
       <DynamicNetworkParticles />
       <Header />
-      <HeroSection />
-      <ServicesSection />
-      <ValueSection />
-      <ApproachSection />
-      <DomainsSection />
-      <UpdatesSection />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <ValueSection />
+        <ApproachSection />
+        <DomainsSection />
+        <UpdatesSection />
+      </main>
       <Footer />
       <ScrollReveal />
     </>

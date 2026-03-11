@@ -7,7 +7,9 @@ import { DynamicNetworkParticles } from '@/components/three/dynamic-network-part
 
 export const metadata: Metadata = {
   title: 'お問い合わせ',
-  robots: { index: false, follow: false },
+  description:
+    'Neurosphereへのお問い合わせはこちら。サービスに関するご質問、お見積もり、資料請求など、お気軽にご連絡ください。',
+  robots: { index: false, follow: true },
 }
 
 export default function ContactPage() {
@@ -16,24 +18,26 @@ export default function ContactPage() {
       <DynamicNetworkParticles />
       <Header />
 
-      <section className="breadcrumb-section">
-        <div className="container">
-          <p className="breadcrumb">Home &gt; お問い合わせ</p>
-        </div>
-      </section>
+      <main>
+        <section className="breadcrumb-section">
+          <div className="container">
+            <p className="breadcrumb">Home &gt; お問い合わせ</p>
+          </div>
+        </section>
 
-      <div className="hero-contact">
-        <div className="hero-contact-content">
-          <h1>お問い合わせ</h1>
-          <p>ご不明点やご相談がありましたらお気軽にご連絡ください。</p>
+        <div className="hero-contact">
+          <div className="hero-contact-content">
+            <h1>お問い合わせ</h1>
+            <p>ご不明点やご相談がありましたらお気軽にご連絡ください。</p>
+          </div>
         </div>
-      </div>
 
-      <section className="section contact-section">
-        <div className="container">
-          <ContactForm />
-        </div>
-      </section>
+        <section className="section contact-section">
+          <div className="container">
+            <ContactForm />
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </>

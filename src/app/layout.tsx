@@ -2,6 +2,7 @@ import { Noto_Sans_JP } from 'next/font/google'
 import type { ReactNode } from 'react'
 
 import '@/styles/globals.css'
+import { organizationJsonLd } from '@/lib/jsonld'
 import { createMetadata } from '@/lib/metadata'
 import { Providers } from './providers'
 
@@ -18,6 +19,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja" className={notoSansJP.variable}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
