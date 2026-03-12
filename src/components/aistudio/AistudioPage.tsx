@@ -1,9 +1,11 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect } from 'react'
 
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
+import { trackMetaEvent } from '@/components/meta-pixel'
 
 import { ContactForm } from '@/components/sections/contact-form'
 
@@ -277,6 +279,10 @@ export default function AistudioPage() {
   const faq = FaqAccordion()
   const sticky = StickyCta()
   const videoModal = VideoModal()
+
+  useEffect(() => {
+    trackMetaEvent('ViewContent', { content_name: 'AI Studio LP' })
+  }, [])
 
   return (
     <div className="aistudio-lp">

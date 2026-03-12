@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import '@/styles/globals.css'
 import { organizationJsonLd } from '@/lib/jsonld'
 import { createMetadata } from '@/lib/metadata'
+import { MetaPixel } from '@/components/meta-pixel'
 import { Providers } from './providers'
 
 const notoSansJP = Noto_Sans_JP({
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
+        <MetaPixel />
         <Providers>{children}</Providers>
       </body>
     </html>
