@@ -2,6 +2,8 @@
 
 import { useCallback, useRef, useState } from 'react'
 
+import { trackMetaEvent } from '@/components/meta-pixel'
+
 const SSGFORM_URL = process.env.NEXT_PUBLIC_SSGFORM_URL ?? ''
 
 export function ContactForm() {
@@ -58,6 +60,7 @@ export function ContactForm() {
 
         if (res.ok) {
           console.log('[ContactForm] Submission successful')
+          trackMetaEvent('Lead')
           setSubmitted(true)
         } else {
           console.error('[ContactForm] Submission failed:', res.status)
