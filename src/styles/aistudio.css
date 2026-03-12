@@ -1,0 +1,1203 @@
+/* ============================================================
+   AI Studio LP — Scoped under .aistudio-lp
+   ============================================================ */
+
+/* --- Reset & Base (LP scope) --- */
+.aistudio-lp {
+  font-family:
+    'Noto Sans JP',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1e1e1e;
+  background: #fefefe;
+  overflow-x: hidden;
+}
+.aistudio-lp a {
+  text-decoration: none;
+  color: inherit;
+}
+.aistudio-lp .container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+.aistudio-lp section {
+  padding: 2.5em 0 5em 0;
+}
+
+/* --- Scroll Reveal --- */
+.aistudio-lp .js-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(8px);
+  transition:
+    opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.aistudio-lp .js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* --- Highlight text --- */
+.aistudio-lp .highlight {
+  background: linear-gradient(90deg, #2fbb8c, #74cca3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 1.1em;
+  display: inline-block;
+  padding: 0 4px;
+  position: relative;
+}
+.aistudio-lp .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #2fbb8c;
+  border-radius: 2px;
+}
+
+/* --- Section Title --- */
+.aistudio-lp .section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: 0.3em;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff,
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.8);
+}
+.aistudio-lp .section-sub {
+  font-size: 1.25rem;
+  line-height: 1.8em;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto 2em auto;
+  text-align: center;
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.9),
+    1px -1px 0 rgba(255, 255, 255, 0.9),
+    -1px 1px 0 rgba(255, 255, 255, 0.9),
+    1px 1px 0 rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 255, 255, 1);
+}
+
+/* --- Detail Link (CTA button) --- */
+.aistudio-lp .detail-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #2fbb8c, #18987b);
+  color: #fff;
+  padding: 0.8em 2em;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  font-size: 1.15rem;
+  font-weight: bold;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+.aistudio-lp .detail-link:hover {
+  background: #fff;
+  color: #2fbb8c;
+  border-color: #2fbb8c;
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   1. HERO — height 350px (user-requested, matched with top page)
+   ============================================================ */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+@keyframes liquidColorMerge {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.aistudio-lp .hero-top {
+  height: 350px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: url('/images/aistudio/hero-bg.jpg') center/cover no-repeat;
+}
+.aistudio-lp .hero-top::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+.aistudio-lp .hero-content {
+  position: relative;
+  z-index: 2;
+}
+.aistudio-lp .hero-h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  background: linear-gradient(
+    to right,
+    #e35345 0%,
+    #e35345 40%,
+    #8e1a0f 45%,
+    #e35345 50%,
+    #ffd4cc 55%,
+    #ffffff 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    heroFadeUp 1.2s ease forwards,
+    liquidColorMerge 5.5s ease 0.8s infinite;
+  margin-bottom: 0.15em;
+}
+.aistudio-lp .hero-sub {
+  font-size: 1.2em;
+  color: #fff;
+  margin-bottom: 1.2em;
+  animation: heroFadeUp 1.2s ease 0.3s both;
+}
+.aistudio-lp .hero-buttons {
+  display: flex;
+  gap: 0.8em;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: heroFadeUp 1.2s ease 0.5s both;
+}
+.aistudio-lp .hero-btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #2fbb8c, #74cca3);
+  color: #fff;
+  padding: 0.6em 1.4em;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}
+.aistudio-lp .hero-btn-primary:hover {
+  opacity: 0.9;
+}
+.aistudio-lp .hero-btn-secondary {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  padding: 0.6em 1.4em;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.aistudio-lp .hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+/* ============================================================
+   1.5 VIDEO SHOWCASE — Infinite Marquee
+   ============================================================ */
+.aistudio-lp #showcase {
+  padding: 3em 0 4em;
+  background: #f9f9f9;
+  overflow: hidden;
+}
+.aistudio-lp #showcase .section-title {
+  margin-bottom: 0.2em;
+}
+.aistudio-lp #showcase .section-sub {
+  margin-bottom: 1.5em;
+}
+.aistudio-lp .showcase-wrapper {
+  overflow: hidden;
+  padding: 0.5em 0;
+  position: relative;
+}
+.aistudio-lp .showcase-wrapper::before,
+.aistudio-lp .showcase-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+.aistudio-lp .showcase-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #f9f9f9, transparent);
+}
+.aistudio-lp .showcase-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #f9f9f9, transparent);
+}
+.aistudio-lp .showcase-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.2em;
+  width: max-content;
+  animation: marqueeScroll 60s linear infinite;
+}
+.aistudio-lp .showcase-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.aistudio-lp .showcase-card {
+  flex: 0 0 auto;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  cursor: pointer;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.aistudio-lp .showcase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+.aistudio-lp .showcase-card.vertical {
+  width: 180px;
+  height: 320px;
+}
+.aistudio-lp .showcase-card.horizontal {
+  width: 320px;
+  height: 180px;
+}
+.aistudio-lp .showcase-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.aistudio-lp .showcase-card:hover .showcase-thumb {
+  opacity: 1;
+}
+.aistudio-lp .showcase-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(47, 187, 140, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s,
+    background 0.3s;
+  pointer-events: none;
+}
+.aistudio-lp .showcase-play::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 14px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 3px;
+}
+.aistudio-lp .showcase-card:hover .showcase-play {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(47, 187, 140, 1);
+}
+.aistudio-lp .showcase-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2em 0.8em 0.8em;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: #fff;
+  pointer-events: none;
+}
+.aistudio-lp .label-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  background: #2fbb8c;
+  color: #fff;
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+}
+.aistudio-lp .label-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   2. 課題提起 (Problems)
+   ============================================================ */
+.aistudio-lp .problems-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+.aistudio-lp .problem-card {
+  flex: 1 1 calc(33% - 2em);
+  min-width: 280px;
+  max-width: 380px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 1.5em 1.5em 1.5em 1.8em;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+.aistudio-lp .problem-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.aistudio-lp .problem-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e35345;
+  border-radius: 2px;
+}
+.aistudio-lp .problem-num {
+  font-size: 0.7rem;
+  color: #e35345;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.aistudio-lp .problem-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  line-height: 1.6;
+}
+.aistudio-lp .problems-resolve {
+  text-align: center;
+  margin-top: 2em;
+  font-size: 1.1rem;
+  color: #2fbb8c;
+  font-weight: 700;
+}
+
+/* ============================================================
+   3. サービス概要 (Service Intro)
+   ============================================================ */
+.aistudio-lp .service-intro {
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+.aistudio-lp .service-intro p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   4. 選ばれる理由 (Biz Cards)
+   ============================================================ */
+.aistudio-lp .biz-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+.aistudio-lp .biz-card {
+  flex: 1 1 calc(33% - 2em);
+  min-width: 280px;
+  max-width: 380px;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2em 1.5em;
+  color: #fff;
+  transition: all 0.35s;
+}
+.aistudio-lp .biz-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  transition: background 0.35s;
+  z-index: 1;
+}
+.aistudio-lp .biz-card:hover::before {
+  background: rgba(0, 0, 0, 0.35);
+}
+.aistudio-lp .biz-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.aistudio-lp .biz-card-content h3 {
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  transition: color 0.3s;
+  min-height: 2.4em;
+  display: flex;
+  align-items: flex-end;
+}
+.aistudio-lp .biz-card:hover .biz-card-content h3 {
+  color: #2fbb8c;
+}
+.aistudio-lp .biz-card-content p {
+  font-size: 0.85em;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1em;
+  min-height: 5.1em;
+}
+.aistudio-lp .biz-card .detail-link {
+  font-size: 0.85rem;
+  padding: 0.5em 1.5em;
+  align-self: flex-start;
+}
+
+/* ============================================================
+   5. 導入実績 (Numbers)
+   ============================================================ */
+.aistudio-lp #numbers {
+  padding-top: 4em;
+}
+.aistudio-lp .numbers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
+.aistudio-lp .number-card {
+  flex: 1 1 calc(25% - 1em);
+  min-width: 200px;
+  max-width: 280px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 2em 1em;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.aistudio-lp .number-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.aistudio-lp .number-val {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #2fbb8c;
+  line-height: 1.2;
+}
+.aistudio-lp .number-label {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.3em;
+  font-weight: 500;
+}
+.aistudio-lp .number-note {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.3em;
+}
+
+/* ============================================================
+   6. ご利用の流れ (Flow) — user-requested: border-top, nowrap, equal cards
+   ============================================================ */
+.aistudio-lp .flow-grid {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+.aistudio-lp .flow-item {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+}
+.aistudio-lp .flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #2fbb8c;
+  padding: 0 0.3em;
+  flex-shrink: 0;
+}
+.aistudio-lp .flow-arrow .arrow-h {
+  display: inline;
+}
+.aistudio-lp .flow-arrow .arrow-v {
+  display: none;
+}
+.aistudio-lp .flow-step {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-top: 3px solid #2fbb8c;
+  padding: 1.5em;
+  text-align: left;
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.aistudio-lp .flow-step:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.aistudio-lp .flow-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  background: #2fbb8c;
+  color: #fff;
+  padding: 0.2em 0.6em;
+  border-radius: 2px;
+  font-weight: 700;
+  margin-bottom: 0.8em;
+}
+.aistudio-lp .flow-step h3 {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #1e1e1e;
+  margin-bottom: 0.3em;
+}
+.aistudio-lp .flow-step p {
+  font-size: 0.85em;
+  color: #555;
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* ============================================================
+   7. 対応動画タイプ (Video Tags)
+   ============================================================ */
+.aistudio-lp .video-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+.aistudio-lp .video-tag {
+  border: 1px solid #2fbb8c;
+  color: #2fbb8c;
+  padding: 0.4em 1em;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.aistudio-lp .video-styles {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 1.5em;
+}
+
+/* ============================================================
+   8. 料金プラン (Pricing)
+   ============================================================ */
+.aistudio-lp #pricing {
+  padding-top: 3em;
+}
+.aistudio-lp .pricing-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+.aistudio-lp .pricing-card {
+  flex: 1 1 calc(33% - 2em);
+  min-width: 280px;
+  max-width: 360px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 2em 1.5em;
+  text-align: center;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+.aistudio-lp .pricing-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.aistudio-lp .pricing-card.recommended {
+  border: 2px solid #2fbb8c;
+}
+.aistudio-lp .pricing-badge {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #2fbb8c, #74cca3);
+  color: #fff;
+  padding: 0.3em 1.2em;
+  border-radius: 0 0 6px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.aistudio-lp .pricing-plan {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.05em;
+}
+.aistudio-lp .pricing-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  margin-bottom: 0.5em;
+}
+.aistudio-lp .pricing-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2fbb8c;
+  margin-bottom: 0.2em;
+}
+.aistudio-lp .pricing-price span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+.aistudio-lp .pricing-note {
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 1.2em;
+}
+.aistudio-lp .pricing-features {
+  text-align: left;
+  margin-bottom: 1.5em;
+}
+.aistudio-lp .pricing-features li {
+  list-style: none;
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 2;
+  padding-left: 1.4em;
+  position: relative;
+}
+.aistudio-lp .pricing-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2fbb8c;
+  font-weight: 700;
+}
+.aistudio-lp .pricing-campaign-inline {
+  background: #fff8f6;
+  border: 1px solid #f0d0c8;
+  border-radius: 6px;
+  padding: 0.6em 0.8em;
+  margin-bottom: 1.2em;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: #555;
+}
+.aistudio-lp .pci-old {
+  text-decoration: line-through;
+  color: #aaa;
+}
+.aistudio-lp .pci-new {
+  color: #e35345;
+  font-weight: 800;
+}
+.aistudio-lp .pci-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  color: #e35345;
+  border: 1px solid #e35345;
+  padding: 0 0.3em;
+  border-radius: 3px;
+  margin-left: 0.3em;
+  vertical-align: middle;
+}
+
+/* --- Pricing Addon --- */
+.aistudio-lp .pricing-addon {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 1.2em 1.5em;
+  text-align: center;
+}
+.aistudio-lp .addon-label {
+  font-size: 0.75rem;
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  letter-spacing: 0.05em;
+}
+.aistudio-lp .addon-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  margin-bottom: 0.2em;
+}
+.aistudio-lp .addon-price {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2fbb8c;
+}
+.aistudio-lp .addon-price span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555;
+}
+.aistudio-lp .addon-desc {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.3em;
+}
+
+/* ============================================================
+   9. 中間CTA (Mid-CTA) — user-requested: keep current dark style
+   ============================================================ */
+.aistudio-lp #mid-cta {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+  text-align: center;
+  padding: 3em 1em 4em;
+}
+.aistudio-lp #mid-cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.aistudio-lp .mid-sub {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5em;
+}
+
+/* ============================================================
+   10. 導入事例 (Cases)
+   ============================================================ */
+.aistudio-lp .cases-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+}
+.aistudio-lp .case-card {
+  flex: 1 1 calc(33% - 2em);
+  min-width: 250px;
+  max-width: 360px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 0;
+  text-align: center;
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+}
+.aistudio-lp .case-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.aistudio-lp .case-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  margin-bottom: 0;
+  display: block;
+}
+.aistudio-lp .case-card h3 {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #1e1e1e;
+  margin-bottom: 0.5em;
+  padding: 1em 1.5em 0;
+}
+.aistudio-lp .case-card p {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.7;
+  padding: 0 1.5em 1.5em;
+}
+
+/* ============================================================
+   11. よくある質問 (FAQ)
+   ============================================================ */
+.aistudio-lp .faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.aistudio-lp .faq-item {
+  border-bottom: 1px solid #e6e6e6;
+}
+.aistudio-lp .faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2em 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1e1e1e;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  line-height: 1.6;
+}
+.aistudio-lp .faq-question:hover {
+  color: #2fbb8c;
+}
+.aistudio-lp .faq-toggle {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-left: 1em;
+  transition: transform 0.3s;
+  color: #2fbb8c;
+}
+.aistudio-lp .faq-item.is-open .faq-toggle {
+  transform: rotate(45deg);
+}
+.aistudio-lp .faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.aistudio-lp .faq-answer-inner {
+  padding: 0 0 1.2em 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   12. 会社概要 (Company)
+   ============================================================ */
+.aistudio-lp .company-table {
+  max-width: 700px;
+  margin: 1.5em auto 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+.aistudio-lp .company-table th,
+.aistudio-lp .company-table td {
+  padding: 0.8em 1em;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.aistudio-lp .company-table th {
+  color: #555;
+  font-weight: 500;
+  width: 30%;
+  white-space: nowrap;
+}
+.aistudio-lp .company-table td {
+  color: #1e1e1e;
+}
+
+/* ============================================================
+   13. お問い合わせ (CTA Section)
+   ============================================================ */
+.aistudio-lp #cta {
+  min-height: auto;
+  background: linear-gradient(135deg, #0f1e16, #1a4030);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5em 1em;
+}
+.aistudio-lp #cta h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  letter-spacing: -0.02em;
+}
+.aistudio-lp .cta-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  margin-bottom: 1em;
+}
+.aistudio-lp .contact-form-wrap {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+/* LP内のフォームカードはcontact-formが自前で持つので、wrap側の二重カードを回避 */
+.aistudio-lp .contact-form-wrap .contact-form {
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* CTA内の送信完了メッセージ — 暗い背景に白文字 */
+.aistudio-lp #cta .form-complete .complete-title,
+.aistudio-lp #cta .form-complete .complete-text {
+  color: #fff;
+}
+
+/* ============================================================
+   Footer — LP内のフッターリンク色をオーバーライド
+   ============================================================ */
+.aistudio-lp .footer-nav a {
+  color: rgba(255, 255, 255, 0.7);
+}
+.aistudio-lp .footer-nav a:hover {
+  color: #fff;
+}
+
+/* ============================================================
+   Video Modal
+   ============================================================ */
+.video-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+}
+.video-modal-content {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+.video-modal-close {
+  position: absolute;
+  top: -36px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.video-modal-player {
+  width: 100%;
+  max-height: 85vh;
+  border-radius: 12px;
+  background: #000;
+}
+
+/* ============================================================
+   Sticky CTA
+   ============================================================ */
+.aistudio-lp .sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #2fbb8c;
+  z-index: 9998;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.aistudio-lp .sticky-cta.is-visible {
+  transform: translateY(0);
+}
+.aistudio-lp .sticky-cta a {
+  display: block;
+  color: #fff;
+  padding: 0.8em;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* ============================================================
+   Network Canvas
+   ============================================================ */
+.aistudio-lp .network-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   RESPONSIVE — 992px
+   ============================================================ */
+@media (max-width: 992px) {
+  .aistudio-lp .problem-card,
+  .aistudio-lp .biz-card,
+  .aistudio-lp .case-card,
+  .aistudio-lp .pricing-card {
+    flex: 1 1 calc(50% - 1em);
+  }
+  .aistudio-lp .flow-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .aistudio-lp .flow-item {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .aistudio-lp .flow-step {
+    flex: 1 1 100%;
+    max-width: 480px;
+    width: 100%;
+  }
+  .aistudio-lp .flow-arrow {
+    padding: 0.3em 0;
+  }
+  .aistudio-lp .flow-arrow .arrow-h {
+    display: none;
+  }
+  .aistudio-lp .flow-arrow .arrow-v {
+    display: inline;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  .aistudio-lp .section-title {
+    font-size: clamp(1.6rem, 8.5vw, 2.5rem);
+  }
+  .aistudio-lp .hero-top {
+    height: 50svh;
+  }
+  .aistudio-lp .hero-h1 {
+    font-size: 1.8rem;
+  }
+  .aistudio-lp .hero-sub {
+    font-size: 1em;
+  }
+  .aistudio-lp .number-card {
+    flex: 1 1 calc(50% - 1em);
+    min-width: 140px;
+  }
+  .aistudio-lp .number-val {
+    font-size: 2.5rem;
+  }
+  .aistudio-lp .problem-card,
+  .aistudio-lp .biz-card,
+  .aistudio-lp .flow-step,
+  .aistudio-lp .case-card,
+  .aistudio-lp .pricing-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .aistudio-lp .flow-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .aistudio-lp .flow-step {
+    max-width: 100%;
+  }
+  .aistudio-lp .biz-card {
+    min-height: 260px;
+  }
+  .aistudio-lp .biz-card-content h3 {
+    min-height: auto;
+  }
+  .aistudio-lp .biz-card-content p {
+    min-height: auto;
+  }
+  .aistudio-lp #cta h2 {
+    font-size: clamp(1.6rem, 8vw, 2.5rem);
+  }
+  .aistudio-lp .sticky-cta {
+    display: block;
+  }
+  .aistudio-lp .showcase-card.vertical {
+    width: 150px;
+    height: 267px;
+  }
+  .aistudio-lp .showcase-card.horizontal {
+    width: 267px;
+    height: 150px;
+  }
+  .aistudio-lp .showcase-play {
+    width: 40px;
+    height: 40px;
+  }
+  .aistudio-lp .contact-form-wrap {
+    padding: 1.5em 1.2em;
+    margin: 0;
+    border-radius: 8px;
+    width: 100%;
+  }
+  .aistudio-lp #cta {
+    padding: 2em 0.8em;
+  }
+  .aistudio-lp .cta-sub {
+    font-size: 0.9rem;
+    margin-bottom: 1em;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — 600px
+   ============================================================ */
+@media (max-width: 600px) {
+  .aistudio-lp .problem-card,
+  .aistudio-lp .case-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
