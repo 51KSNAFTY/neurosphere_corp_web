@@ -2,13 +2,16 @@
 
 import { useCallback, useRef, useState } from 'react'
 
+const SSGFORM_URL = process.env.NEXT_PUBLIC_SSGFORM_URL ?? ''
+
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
       if (isSubmitting) return
 
@@ -31,14 +34,41 @@ export function ContactForm() {
         return
       }
 
-      setIsSubmitting(true)
-      console.log('[ContactForm] Form submitted')
+      if (!SSGFORM_URL) {
+        console.error('[ContactForm] SSGFORM_URL is not configured')
+        setError(
+          'フォームの設定に問題があります。管理者にお問い合わせください。',
+        )
+        return
+      }
 
-      // TODO: フォーム送信処理を実装
-      setTimeout(() => {
-        setSubmitted(true)
+      setIsSubmitting(true)
+      setError('')
+      console.log('[ContactForm] Submitting to SSGform...')
+
+      try {
+        const fd = new FormData(form)
+        const res = await fetch(SSGFORM_URL, {
+          method: 'POST',
+          body: fd,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        })
+
+        if (res.ok) {
+          console.log('[ContactForm] Submission successful')
+          setSubmitted(true)
+        } else {
+          console.error('[ContactForm] Submission failed:', res.status)
+          setError('送信に失敗しました。時間をおいて再度お試しください。')
+        }
+      } catch (err) {
+        console.error('[ContactForm] Network error:', err)
+        setError('通信エラーが発生しました。ネットワーク接続をご確認ください。')
+      } finally {
         setIsSubmitting(false)
-      }, 1200)
+      }
     },
     [isSubmitting],
   )
@@ -62,13 +92,18 @@ export function ContactForm() {
       className="contact-form"
       noValidate
     >
+      {/* ハニーポット: スパムボット対策（非表示フィールド） */}
+      <div style={{ display: 'none' }} aria-hidden="true">
+        <input type="text" name="wana" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="form-group">
         <label htmlFor="inquiry-type">
           お問い合わせ種別<span className="required">*</span>
         </label>
         <select
           id="inquiry-type"
-          name="inquiry-type"
+          name="お問い合わせ種別"
           className="form-input"
           required
           defaultValue=""
@@ -91,7 +126,7 @@ export function ContactForm() {
         <input
           type="text"
           id="company"
-          name="company"
+          name="会社名・組織名"
           className="form-input"
           required
           placeholder="例）株式会社ニューロスフィア"
@@ -106,7 +141,7 @@ export function ContactForm() {
           <input
             type="text"
             id="lastname"
-            name="lastname"
+            name="姓"
             className="form-input"
             required
             placeholder="姓"
@@ -114,7 +149,7 @@ export function ContactForm() {
           <input
             type="text"
             id="firstname"
-            name="firstname"
+            name="名"
             className="form-input"
             required
             placeholder="名"
@@ -129,7 +164,7 @@ export function ContactForm() {
         <input
           type="email"
           id="email"
-          name="email"
+          name="メールアドレス"
           className="form-input"
           required
           placeholder="例）info@example.com"
@@ -141,7 +176,7 @@ export function ContactForm() {
         <input
           type="tel"
           id="phone"
-          name="phone"
+          name="電話番号"
           className="form-input"
           placeholder="例）03-1234-5678"
         />
@@ -153,7 +188,7 @@ export function ContactForm() {
         </label>
         <textarea
           id="message"
-          name="message"
+          name="お問い合わせ内容"
           rows={5}
           className="form-input"
           required
@@ -162,6 +197,8 @@ export function ContactForm() {
       </div>
 
       <p className="note">*は入力必須項目</p>
+
+      {error && <p className="form-error">{error}</p>}
 
       <div className="form-group form-group-submit">
         <button type="submit" className="submit-button" disabled={isSubmitting}>

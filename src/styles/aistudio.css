@@ -985,6 +985,12 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
 }
 
+/* CTA内の送信完了メッセージ — 暗い背景に白文字 */
+.aistudio-lp #cta .form-complete .complete-title,
+.aistudio-lp #cta .form-complete .complete-text {
+  color: #fff;
+}
+
 /* ============================================================
    Footer — LP内のフッターリンク色をオーバーライド
    ============================================================ */

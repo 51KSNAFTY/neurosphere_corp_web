@@ -1384,6 +1384,13 @@ textarea.form-input {
   border-bottom-color: #e35345;
 }
 
+.form-error {
+  color: #e35345;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.5em 0 0;
+}
+
 .form-complete {
   text-align: center;
   padding: 2em 0;
