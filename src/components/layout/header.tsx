@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
 import { useLocale } from '@/lib/i18n'
+import { cn } from '@/lib/utils'
 
 interface HeaderProps {
   /** LP用CTAボタン。指定時はナビを非表示にしCTAのみ表示 */
@@ -96,7 +97,7 @@ export function Header({ lpCta }: HeaderProps = {}) {
             )}
 
             <div
-              className={`header-hamburger${mobileMenuOpen ? 'active' : ''}`}
+              className={cn('header-hamburger', mobileMenuOpen && 'active')}
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               role="button"
               tabIndex={0}
@@ -113,14 +114,17 @@ export function Header({ lpCta }: HeaderProps = {}) {
               <span />
             </div>
 
-            <nav className={`header-nav${mobileMenuOpen ? 'active' : ''}`}>
+            <nav className={cn('header-nav', mobileMenuOpen && 'active')}>
               <ul className="nav-list">
                 <li className="has-sub">
                   <span onClick={(e) => toggleSubMenu(0, e)}>
                     {t('nav_products')}
                   </span>
                   <ul
-                    className={`sub-nav-list${activeSubMenus.has(0) ? 'active' : ''}`}
+                    className={cn(
+                      'sub-nav-list',
+                      activeSubMenus.has(0) && 'active',
+                    )}
                   >
                     <li>
                       <NavLink href="/#services" isHome={isHome}>
