@@ -614,7 +614,8 @@ img {
 
 @media (max-width: 768px) {
   .hero-top {
-    height: 180px;
+    height: auto;
+    min-height: 180px;
   }
 }
 
@@ -722,7 +723,19 @@ img {
 
 @media (max-width: 768px) {
   .hero-top-content h1 {
-    font-size: 6rem;
+    font-size: clamp(3rem, 12vw, 6rem);
+  }
+
+  .section p {
+    font-size: 1rem;
+  }
+
+  .value-highlight-text {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+  }
+
+  .value-catchphrase {
+    font-size: 1.1rem;
   }
 }
 
@@ -1783,20 +1796,21 @@ footer {
 
   /* メインビジュアルをファーストビューで全画面 */
   .hero-top {
-    height: 100svh;
+    height: auto;
+    min-height: 100svh;
   }
 
   /* セクションタイトルのフォントサイズ */
   .section h2 {
-    font-size: clamp(1.6rem, 8.5vw, 2.5rem) !important;
-    word-break: keep-all;
-    line-height: 1.8em;
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    overflow-wrap: anywhere;
+    line-height: 1.6em;
   }
 
   .section-title {
-    font-size: clamp(1.8rem, 10.8vw, 3.2rem) !important;
-    word-break: keep-all;
-    line-height: 1.6em;
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+    overflow-wrap: anywhere;
+    line-height: 1.5em;
   }
 
   /* 言語切り替えボタン */

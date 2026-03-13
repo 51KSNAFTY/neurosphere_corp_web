@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/header'
 import { trackMetaEvent } from '@/components/meta-pixel'
 
 import { ContactForm } from '@/components/sections/contact-form'
+import { cn } from '@/lib/utils'
 
 import {
   FaqAccordion,
@@ -553,7 +554,10 @@ export default function AistudioPage() {
             {pricingPlans.map((p, i) => (
               <div
                 key={i}
-                className={`pricing-card js-reveal${p.recommended ? 'recommended' : ''}`}
+                className={cn(
+                  'pricing-card js-reveal',
+                  p.recommended && 'recommended',
+                )}
                 style={{ transitionDelay: `${0.1 + i * 0.1}s` }}
               >
                 {p.recommended && <div className="pricing-badge">おすすめ</div>}
