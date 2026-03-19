@@ -3,19 +3,40 @@ import type { Metadata } from 'next'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { DynamicNetworkParticles } from '@/components/three/dynamic-network-particles'
+import { createBreadcrumbJsonLd } from '@/lib/jsonld'
+import { createMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: '会社概要',
-  description:
-    '株式会社ニューロスフィアの会社概要。東京都港区西新橋に拠点を置き、AIソリューション・プロダクト開発を展開しています。',
-  alternates: {
-    canonical: '/company',
+export const metadata: Metadata = createMetadata(
+  {
+    title: '会社概要',
+    description:
+      '株式会社ニューロスフィアの会社概要ページです。所在地、代表者、設立日、事業内容などの企業情報を掲載しています。',
+    openGraph: {
+      title: '会社概要 | Neurosphere',
+      description:
+        '株式会社ニューロスフィアの所在地、代表者、設立日、事業内容などの企業情報を掲載しています。',
+    },
+    twitter: {
+      title: '会社概要 | Neurosphere',
+      description:
+        '株式会社ニューロスフィアの所在地、代表者、設立日、事業内容などの企業情報を掲載しています。',
+    },
   },
-}
+  '/company',
+)
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  { name: 'ホーム', path: '/' },
+  { name: '会社概要', path: '/company' },
+])
 
 export default function CompanyPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <DynamicNetworkParticles />
       <Header />
 
@@ -58,7 +79,7 @@ export default function CompanyPage() {
                 </tr>
                 <tr>
                   <th>事業内容</th>
-                  <td>AIソリューション/プロダクト開発・提供</td>
+                  <td>AI BPO・AIエージェント開発・DX支援</td>
                 </tr>
               </tbody>
             </table>

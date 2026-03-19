@@ -42,7 +42,12 @@ export function HeroSection() {
       </video>
 
       <div className="hero-top-content">
-        <h1>THE AI MERGE</h1>
+        <h1>
+          <span className="hero-brand-name">株式会社ニューロスフィア</span>
+          <span className="hero-brand-tagline">
+            AI BPO・AIエージェント開発・DX支援
+          </span>
+        </h1>
 
         <p>{t('hero_sub')}</p>
 

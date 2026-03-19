@@ -54,11 +54,15 @@ export function Header({ lpCta }: HeaderProps = {}) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/Neurosphere_Logo_Horizontal.png"
-            alt="Company Logo"
+            alt="株式会社ニューロスフィア"
             className="logo-full"
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon-light.png" alt="Company Logo" className="logo-icon" />
+          <img
+            src="/icon-light.png"
+            alt="株式会社ニューロスフィア"
+            className="logo-icon"
+          />
         </Link>
 
         {lpCta ? (

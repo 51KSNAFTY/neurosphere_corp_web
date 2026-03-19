@@ -5,19 +5,26 @@ import { createMetadata } from '@/lib/metadata'
 describe('createMetadata', () => {
   it('デフォルトのメタデータを返す', () => {
     const metadata = createMetadata()
-    expect(metadata.description).toContain('Neurosphere')
+    expect(metadata.description).toContain('株式会社ニューロスフィア')
     expect(metadata.icons).toBeDefined()
   })
 
   it('metadataBaseが設定されている', () => {
     const metadata = createMetadata()
     expect(metadata.metadataBase).toBeDefined()
-    expect(metadata.metadataBase?.toString()).toBe('https://neurosphere.co.jp/')
+    expect(metadata.metadataBase?.toString()).toBe(
+      'https://www.neurosphere.co.jp/',
+    )
   })
 
   it('canonical URLが設定されている', () => {
     const metadata = createMetadata()
     expect(metadata.alternates?.canonical).toBe('/')
+  })
+
+  it('Google verificationを設定できる', () => {
+    const metadata = createMetadata()
+    expect(metadata.verification).toBeDefined()
   })
 
   it('OGPが設定されている', () => {

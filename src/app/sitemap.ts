@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 
-const BASE_URL = 'https://neurosphere.co.jp'
+const BASE_URL = 'https://www.neurosphere.co.jp'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -25,13 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${BASE_URL}/contact`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.4,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'monthly',
       priority: 0.2,
     },
   ]

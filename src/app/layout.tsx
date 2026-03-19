@@ -2,7 +2,7 @@ import { Noto_Sans_JP } from 'next/font/google'
 import type { ReactNode } from 'react'
 
 import '@/styles/globals.css'
-import { organizationJsonLd } from '@/lib/jsonld'
+import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld'
 import { createMetadata } from '@/lib/metadata'
 import { MetaPixel } from '@/components/meta-pixel'
 import { Providers } from './providers'
@@ -24,6 +24,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
           }}
         />
         <MetaPixel />
