@@ -47,7 +47,7 @@ afterEach(() => {
 describe('Header', () => {
   it('ロゴが表示される', () => {
     render(<Header />)
-    const logos = screen.getAllByAltText('Company Logo')
+    const logos = screen.getAllByAltText('株式会社ニューロスフィア')
     expect(logos.length).toBeGreaterThanOrEqual(1)
   })
 

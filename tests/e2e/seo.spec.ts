@@ -15,16 +15,16 @@ test.describe('SEO・メタデータ', () => {
     await expect(robots).toHaveCount(0)
   })
 
-  test('お問い合わせページがnoindexである', async ({ page }) => {
+  test('お問い合わせページがindex可能である', async ({ page }) => {
     await page.goto('/contact')
-    const robots = page.locator('meta[name="robots"]')
-    await expect(robots).toHaveAttribute('content', /noindex/)
+    const robots = page.locator('meta[name="robots"][content*="noindex"]')
+    await expect(robots).toHaveCount(0)
   })
 
-  test('会社概要ページがnoindexである', async ({ page }) => {
+  test('会社概要ページがindex可能である', async ({ page }) => {
     await page.goto('/company')
-    const robots = page.locator('meta[name="robots"]')
-    await expect(robots).toHaveAttribute('content', /noindex/)
+    const robots = page.locator('meta[name="robots"][content*="noindex"]')
+    await expect(robots).toHaveCount(0)
   })
 
   test('OGPメタタグが設定されている', async ({ page }) => {
@@ -66,5 +66,13 @@ test.describe('SEO・メタデータ', () => {
   test('html lang属性がjaである', async ({ page }) => {
     await page.goto('/')
     await expect(page.locator('html')).toHaveAttribute('lang', 'ja')
+  })
+
+  test('canonical URLがwwwに統一されている', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://www.neurosphere.co.jp/',
+    )
   })
 })

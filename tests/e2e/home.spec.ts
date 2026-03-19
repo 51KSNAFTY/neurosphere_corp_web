@@ -9,9 +9,14 @@ test.describe('ホームページ', () => {
     await expect(page).toHaveTitle(/Neurosphere/)
   })
 
-  test('ヒーローセクションの「THE AI MERGE」が表示される', async ({ page }) => {
-    await expect(page.locator('.hero-top-content h1')).toHaveText(
-      'THE AI MERGE',
+  test('ヒーローセクションにブランド名と主要サービスが表示される', async ({
+    page,
+  }) => {
+    await expect(page.locator('.hero-brand-name')).toHaveText(
+      '株式会社ニューロスフィア',
+    )
+    await expect(page.locator('.hero-brand-tagline')).toHaveText(
+      'AI BPO・AIエージェント開発・DX支援',
     )
   })
 

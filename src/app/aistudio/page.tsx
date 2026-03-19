@@ -1,36 +1,46 @@
 import type { Metadata } from 'next'
 
 import AistudioPage from '@/components/aistudio/AistudioPage'
-import { aistudioFaqJsonLd, aistudioServiceJsonLd } from '@/lib/jsonld'
+import {
+  aistudioFaqJsonLd,
+  aistudioServiceJsonLd,
+  createBreadcrumbJsonLd,
+} from '@/lib/jsonld'
+import { createMetadata } from '@/lib/metadata'
 import '@/styles/aistudio.css'
 
-export const metadata: Metadata = {
-  title: 'AI活用型広告動画制作・運用サービス',
-  description:
-    '「当てにいく広告」ではなく「当たるまで回し続ける広告」へ。AI×プロの制作チームが広告動画の制作から運用・改善まで一気通貫で伴走。月10本¥350,000〜。',
-  alternates: {
-    canonical: '/aistudio',
-  },
-  openGraph: {
-    title: 'AI活用型広告動画制作・運用サービス | Neurosphere',
+export const metadata: Metadata = createMetadata(
+  {
+    title: 'AI活用型広告動画制作・運用サービス',
     description:
-      '「当てにいく広告」ではなく「当たるまで回し続ける広告」へ。AI×プロの制作チームが広告動画の制作から運用・改善まで一気通貫で伴走。月10本¥350,000〜。',
-    siteName: 'Neurosphere',
-    locale: 'ja_JP',
-    type: 'website',
-    url: '/aistudio',
+      'AI活用型の広告動画制作・運用サービス。AIとプロの制作チームが広告動画の企画、制作、運用、改善まで一気通貫で伴走します。',
+    openGraph: {
+      title: 'AI活用型広告動画制作・運用サービス | Neurosphere',
+      description:
+        'AIとプロの制作チームが広告動画の企画、制作、運用、改善まで一気通貫で伴走します。',
+      type: 'website',
+    },
+    twitter: {
+      title: 'AI活用型広告動画制作・運用サービス | Neurosphere',
+      description:
+        'AIとプロの制作チームが広告動画の企画、制作、運用、改善まで一気通貫で伴走します。',
+    },
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI活用型広告動画制作・運用サービス | Neurosphere',
-    description:
-      '「当てにいく広告」ではなく「当たるまで回し続ける広告」へ。AI×プロの制作チームが広告動画の制作から運用・改善まで一気通貫で伴走。',
-  },
-}
+  '/aistudio',
+)
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  { name: 'ホーム', path: '/' },
+  { name: 'AI活用型広告動画制作・運用サービス', path: '/aistudio' },
+])
 
 export default function Page() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

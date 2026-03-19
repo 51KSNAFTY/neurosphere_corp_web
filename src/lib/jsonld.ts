@@ -23,6 +23,40 @@ export const organizationJsonLd = {
   foundingDate: '2025-12-03',
 }
 
+export const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Neurosphere',
+  alternateName: '株式会社ニューロスフィア',
+  url: BASE_URL,
+  inLanguage: 'ja-JP',
+}
+
+export const homeWebPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '株式会社ニューロスフィア | AI BPO・AIエージェント開発・DX支援',
+  url: BASE_URL,
+  description:
+    '株式会社ニューロスフィアは、AI BPO、AIエージェント開発、DX支援を通じて業務を再設計し、成果につながるAI実装を行うパートナーです。',
+  inLanguage: 'ja-JP',
+}
+
+export function createBreadcrumbJsonLd(
+  items: Array<{ name: string; path: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: new URL(item.path, BASE_URL).toString(),
+    })),
+  }
+}
+
 export const aistudioFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',

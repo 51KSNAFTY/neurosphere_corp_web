@@ -8,10 +8,17 @@ import { ServicesSection } from '@/components/sections/services-section'
 import { UpdatesSection } from '@/components/sections/updates-section'
 import { ValueSection } from '@/components/sections/value-section'
 import { DynamicNetworkParticles } from '@/components/three/dynamic-network-particles'
+import { homeWebPageJsonLd } from '@/lib/jsonld'
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeWebPageJsonLd),
+        }}
+      />
       <DynamicNetworkParticles />
       <Header />
       <main>

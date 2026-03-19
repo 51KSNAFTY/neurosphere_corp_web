@@ -658,8 +658,8 @@ img {
 .hero-top-content h1 {
   font-weight: 700;
   margin: 0;
-  line-height: 1;
-  font-size: 8rem;
+  line-height: 1.05;
+  font-size: 5rem;
   background: linear-gradient(
     to right,
     #e35345 0%,
@@ -680,6 +680,22 @@ img {
   animation:
     heroFadeUp 1.2s ease-out forwards,
     liquidColorMerge 5.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.8s;
+}
+
+.hero-brand-name,
+.hero-brand-tagline {
+  display: block;
+}
+
+.hero-brand-name {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: 0.04em;
+}
+
+.hero-brand-tagline {
+  margin-top: 0.18em;
+  font-size: clamp(1.4rem, 2.8vw, 2.5rem);
+  line-height: 1.2;
 }
 
 @keyframes heroFadeUp {
@@ -723,7 +739,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-top-content h1 {
-    font-size: clamp(3rem, 12vw, 6rem);
+    font-size: clamp(2.8rem, 10vw, 4rem);
   }
 
   .section p {
